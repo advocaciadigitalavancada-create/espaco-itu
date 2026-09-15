@@ -2,11 +2,11 @@
 <html lang="pt-BR" prefix="og: http://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
   <title>Espaço Itu | Pizza Artesanal Fermentação 48h & Café Especial • Rio Tavares</title>
-  <meta name="description" content="Pizza de fermentação lenta maturada por 48h feita pelo faixa-preta e café especial de alta qualidade com croissants e brunch tocado por ela. Rod. Dr. Antônio Luiz Moura Gonzaga, 1895 - Rio Tavares, Florianópolis. Pedidos direto no WhatsApp!">
-  <meta name="theme-color" content="#2C1B11">
+  <meta name="description" content="Pizza de fermentação lenta maturada por 48h feita pelo faixa-preta e café especial de alta qualidade com croissants e brunch. Rod. Dr. Antônio Luiz Moura Gonzaga, 1895 - Rio Tavares, Florianópolis. Pedidos direto no WhatsApp!">
+  <meta name="theme-color" content="#24140B">
 
   <!-- Open Graph / WhatsApp Preview Canônico -->
   <meta property="og:type" content="website">
@@ -24,21 +24,31 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #FAF8F5;
+      /* PALETA DE ALTO CONTRASTE PARA LEITURA SOLAR (WCAG AAA) */
+      --bg: #FAF7F2;
       --surface: #FFFFFF;
-      --primary: #2C1B11;
-      --accent: #B84A28;
-      --accent-light: #FBF0EB;
-      --gold: #C5A059;
-      --gold-light: #FDF9F0;
-      --ink: #2C1B11;
-      --ink-muted: #6B5B52;
-      --border: #E8DFD8;
-      --radius: 12px;
+      --primary: #24140B;          /* Café torrado intenso (contraste > 14:1) */
+      --primary-soft: #382418;
+      --accent: #B84A28;           /* Terracota de forno a lenha */
+      --accent-dark: #8A3319;
+      --accent-light: #FBEFEA;     /* Fundo suave quente */
+      --gold: #A97A24;             /* Dourado da crosta escurecido para leitura solar */
+      --gold-light: #FDF6E7;
+      --ink: #20130B;              /* Tipografia de máxima legibilidade */
+      --ink-muted: #54443B;        /* Contraste 8.2:1 - ultra legível sob sol intenso */
+      --border: #E5DAD0;           /* Divisores nítidos */
+      --border-strong: #D1C0B4;
+      --wa-green: #25D366;
+      --wa-dark: #1DA851;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(36, 20, 11, 0.05), 0 2px 8px rgba(36, 20, 11, 0.03);
+      --shadow-md: 0 4px 16px rgba(36, 20, 11, 0.08);
+      --shadow-lg: 0 10px 30px rgba(36, 20, 11, 0.14);
     }
 
     * {
@@ -53,49 +63,103 @@
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--ink);
       line-height: 1.5;
-      padding-bottom: 90px;
+      padding-bottom: 96px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* BARRA SUPERIOR DE HORÁRIOS & STATUS */
+    /* BARRA SUPERIOR DE HORÁRIOS & STATUS DINÂMICO */
     .top-status-bar {
       background: var(--primary);
       color: #FFF;
-      padding: 8px 16px;
+      padding: 9px 16px;
       font-size: 11.5px;
       font-weight: 600;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+      z-index: 101;
+    }
+    .top-address {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #EADFD7;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255,255,255,0.12);
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 20px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+    .status-pill.open-day {
+      background: rgba(37, 211, 102, 0.18);
+      color: #4ADE80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+    .status-pill.open-night {
+      background: rgba(197, 160, 89, 0.22);
+      color: #FCD34D;
+      border: 1px solid rgba(252, 211, 77, 0.35);
+    }
+    .status-pill.closed {
+      background: rgba(239, 68, 68, 0.16);
+      color: #FCA5A5;
+      border: 1px solid rgba(248, 113, 113, 0.3);
     }
     .status-dot {
       width: 7px;
       height: 7px;
-      background: #4ADE80;
       border-radius: 50%;
-      box-shadow: 0 0 6px #4ADE80;
+      display: inline-block;
+      position: relative;
+    }
+    .status-pill.open-day .status-dot {
+      background: #4ADE80;
+      box-shadow: 0 0 8px #4ADE80;
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+    .status-pill.open-night .status-dot {
+      background: #FCD34D;
+      box-shadow: 0 0 8px #FCD34D;
+      animation: pulseAmber 2s infinite ease-in-out;
+    }
+    .status-pill.closed .status-dot {
+      background: #F87171;
     }
 
-    /* HEADER COM LOGO E FOTO */
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+    @keyframes pulseAmber {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* HEADER */
     header {
       background: #FFF;
       border-bottom: 1px solid var(--border);
-      padding: 24px 20px 20px;
+      padding: 22px 18px 18px;
       text-align: center;
+      position: relative;
     }
     .brand-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 800;
       color: var(--primary);
       letter-spacing: -0.03em;
@@ -103,106 +167,201 @@
       line-height: 1;
     }
     .brand-sub {
-      font-size: 13.5px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 800;
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-top: 6px;
     }
     .brand-meta {
-      font-size: 13px;
+      font-size: 12.5px;
+      font-weight: 600;
       color: var(--ink-muted);
-      margin-top: 6px;
+      margin-top: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
+    }
+    .brand-meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--bg);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
     }
 
     /* BADGE GOOGLE MAPS 5.0 */
     .google-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       background: var(--gold-light);
-      border: 1px solid #E2D1A8;
-      padding: 4px 10px;
+      border: 1.5px solid #DFC998;
+      padding: 5px 12px;
       border-radius: 20px;
       font-size: 12px;
-      font-weight: 700;
-      color: #785819;
-      margin-top: 10px;
+      font-weight: 800;
+      color: #6C4F13;
+      margin-top: 12px;
       text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .google-badge:active {
+      transform: scale(0.98);
     }
     .google-stars {
-      color: #EAB308;
-      font-size: 14px;
+      color: #D97706;
+      font-size: 13px;
       letter-spacing: 1px;
     }
 
-    /* SELETOR DE TURNOS TÁTIL (DIA vs NOITE) */
+    /* BANNER DINÂMICO DE STATUS EM TEMPO REAL */
+    .live-status-card {
+      margin: 14px auto 0;
+      max-width: 680px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .live-status-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .live-status-icon.day {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .live-status-icon.night {
+      background: var(--primary);
+      color: #FCD34D;
+    }
+    .live-status-icon.closed {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+    .live-status-info {
+      flex: 1;
+      text-align: left;
+    }
+    .live-status-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .live-status-desc {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    /* SELETOR DE TURNOS TÁTIL (STICKY & FLUIDO) */
     .shift-selector-container {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--bg);
-      padding: 12px 16px;
+      background: rgba(250, 247, 242, 0.94);
+      padding: 10px 16px;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.3s ease;
     }
     .shift-selector {
-      background: #E8DFD8;
-      border-radius: 30px;
+      max-width: 680px;
+      margin: 0 auto;
+      background: #E8DED6;
+      border-radius: 32px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding: 4px;
       gap: 4px;
+      border: 1px solid var(--border-strong);
+      position: relative;
     }
     .shift-btn {
       border: none;
       background: transparent;
-      padding: 10px 12px;
-      border-radius: 26px;
+      padding: 11px 12px;
+      border-radius: 28px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 13.5px;
       font-weight: 800;
-      color: var(--ink-muted);
+      color: #5C4B40;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: all 0.25s ease;
+      gap: 7px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       text-transform: uppercase;
       letter-spacing: 0.02em;
+      position: relative;
+      outline: none;
+    }
+    .shift-btn:active {
+      transform: scale(0.97);
     }
     .shift-btn.active {
-      background: #FFF;
+      background: #FFFFFF;
       color: var(--primary);
-      box-shadow: 0 2px 8px rgba(44, 27, 17, 0.12);
+      box-shadow: 0 3px 12px rgba(36, 20, 11, 0.12);
     }
     .shift-btn.active.night {
       background: var(--primary);
-      color: #FFF;
+      color: #FFFFFF;
+      box-shadow: 0 3px 14px rgba(36, 20, 11, 0.3);
+    }
+    .shift-btn .shift-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      background: rgba(0,0,0,0.06);
+    }
+    .shift-btn.active.night .shift-tag {
+      background: rgba(255,255,255,0.18);
+      color: #FCD34D;
     }
 
     /* CONTAINER PRINCIPAL */
     .container {
       max-width: 680px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 14px 16px;
     }
 
     /* BOX AUTORAL: A HISTÓRIA DO CASAL */
     .story-card {
       background: #FFF;
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
     }
     .story-grid {
       display: grid;
@@ -210,16 +369,35 @@
       gap: 14px;
       align-items: center;
     }
+    .story-img-wrap {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+    }
     .story-img {
       width: 100px;
-      height: 100px;
-      border-radius: 8px;
+      height: 105px;
       object-fit: cover;
-      border: 1px solid var(--border);
+      display: block;
+    }
+    .story-img-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(36, 20, 11, 0.85);
+      color: #FFF;
+      font-size: 8.5px;
+      font-weight: 800;
+      text-align: center;
+      padding: 2px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .story-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 800;
       color: var(--accent);
       text-transform: uppercase;
@@ -227,14 +405,14 @@
     }
     .story-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--primary);
       margin: 2px 0 4px;
     }
     .story-desc {
       font-size: 12.5px;
-      line-height: 1.4;
+      line-height: 1.45;
       color: var(--ink-muted);
     }
 
@@ -243,12 +421,13 @@
       background: var(--accent-light);
       border-left: 4px solid var(--accent);
       padding: 14px 16px;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 20px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
     }
     .shift-banner.night-banner {
-      background: #23160E;
-      border-left: 4px solid var(--gold);
+      background: #1C1008;
+      border-left: 4px solid #C5A059;
       color: #FFF;
     }
     .shift-banner h3 {
@@ -257,30 +436,51 @@
       font-weight: 800;
       text-transform: uppercase;
       margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .shift-banner p {
       font-size: 12.5px;
-      line-height: 1.4;
+      line-height: 1.45;
+      color: #4A3A31;
     }
     .shift-banner.night-banner p {
-      color: #D1C5BC;
+      color: #D3C6BD;
     }
 
-    /* GRUPOS DO CARDÁPIO */
+    /* MICROINTERAÇÕES E TRANSIÇÕES DE ABAS */
     .menu-section {
       display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .menu-section.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: tabFadeSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    @keyframes tabFadeSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .menu-category-title {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--accent);
-      margin: 24px 0 12px;
+      margin: 22px 0 10px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -288,68 +488,111 @@
     .menu-category-title::after {
       content: "";
       flex: 1;
-      height: 1px;
+      height: 1.5px;
       background: var(--border);
     }
 
-    /* CARDS DE ITENS */
+    /* CARDS DE ITENS MOBILE COM EFEITO TÁTIL */
     .item-card {
       background: #FFF;
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 16px;
+      padding: 14px 15px;
       margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+    .item-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .item-card:active {
+      transform: scale(0.985);
+      background: #FCFAF8;
     }
     .item-info {
       flex: 1;
+      min-width: 0;
     }
-    .item-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--primary);
+    .item-header-row {
       display: flex;
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
     }
+    .item-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.25;
+    }
     .item-tag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 9.5px;
-      font-weight: 700;
+      font-weight: 800;
       background: var(--accent-light);
       color: var(--accent);
       padding: 2px 6px;
       border-radius: 4px;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .item-tag.highlight {
+      background: #FDF4D8;
+      color: #8C5E0D;
+      border: 1px solid #E6D49C;
     }
     .item-desc {
       font-size: 12px;
       color: var(--ink-muted);
       margin-top: 4px;
-      line-height: 1.35;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .item-bottom-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 6px;
     }
     .item-price {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 15.5px;
+      font-weight: 800;
       color: var(--primary);
-      margin-top: 6px;
     }
+    .item-tap-hint {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* BOTÃO DE PEDIDO RÁPIDO NO CARD */
     .btn-order-item {
-      background: #25D366;
+      background: var(--wa-green);
       color: #FFF;
       border: none;
       padding: 10px 14px;
-      border-radius: 8px;
+      border-radius: 9px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
@@ -357,16 +600,23 @@
       gap: 6px;
       white-space: nowrap;
       flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.28);
+      transition: all 0.15s ease;
+      z-index: 2;
+    }
+    .btn-order-item:active {
+      transform: scale(0.95);
+      background: var(--wa-dark);
     }
 
     /* MÓDULO COMO CHEGAR */
     .location-card {
       background: #FFF;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid var(--border-strong);
       border-radius: var(--radius);
       padding: 18px;
-      margin-top: 28px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
     }
     .location-title {
       font-family: 'Space Grotesk', sans-serif;
@@ -382,7 +632,7 @@
     .location-info {
       font-size: 13px;
       color: var(--ink-muted);
-      line-height: 1.45;
+      line-height: 1.5;
       margin-bottom: 14px;
     }
     .location-actions {
@@ -396,19 +646,23 @@
       justify-content: center;
       gap: 8px;
       padding: 12px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 12.5px;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
       text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .btn-loc:active {
+      transform: scale(0.97);
     }
     .btn-loc-maps {
       background: var(--primary);
       color: #FFF;
     }
     .btn-loc-wa {
-      background: #25D366;
+      background: var(--wa-green);
       color: #FFF;
     }
 
@@ -418,18 +672,20 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: #FFF;
-      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1.5px solid var(--border);
       padding: 12px 16px;
       display: flex;
       justify-content: center;
       z-index: 999;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+      box-shadow: 0 -4px 18px rgba(36, 20, 11, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .btn-cta-main {
       width: 100%;
       max-width: 680px;
-      background: #25D366;
+      background: var(--wa-green);
       color: #FFF;
       border: none;
       padding: 14px 20px;
@@ -442,9 +698,244 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
       text-transform: uppercase;
       letter-spacing: 0.02em;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn-cta-main:active {
+      transform: scale(0.98);
+      background: var(--wa-dark);
+    }
+
+    /* MODAL / BOTTOM SHEET DRAWER DE DETALHES DO PRODUTO */
+    .drawer-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(20, 10, 5, 0.65);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .drawer-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer-sheet {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 580px;
+      max-height: 88vh;
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.8);
+    }
+    .drawer-backdrop.active .drawer-sheet {
+      transform: translateY(0);
+    }
+
+    /* CABEÇALHO DO DRAWER COM ALÇA TÁTIL */
+    .drawer-handle-bar {
+      padding: 10px 16px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #FFF;
+      position: relative;
+    }
+    .drawer-handle {
+      width: 44px;
+      height: 5px;
+      background: #D9CFC7;
+      border-radius: 10px;
+      margin-bottom: 6px;
+    }
+    .drawer-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #F3ECE6;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+    .drawer-close-btn:active {
+      background: #E5DAD0;
+    }
+
+    /* CONTEÚDO ROLÁVEL DO DRAWER */
+    .drawer-content {
+      padding: 4px 20px 24px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .drawer-hero-img-wrap {
+      width: 100%;
+      height: 180px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+      background: #24140B;
+      border: 1px solid var(--border);
+    }
+    .drawer-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .drawer-hero-badge {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      background: rgba(36, 20, 11, 0.88);
+      color: #FCD34D;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+
+    .drawer-category-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: inline-block;
+    }
+    .drawer-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    .drawer-item-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.15;
+    }
+    .drawer-item-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-dark);
+      white-space: nowrap;
+    }
+
+    .drawer-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+    }
+
+    /* BOX GASTRONÔMICO: SEGREDO DO PROCESSO */
+    .drawer-process-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+    .drawer-process-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .drawer-process-body {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    /* INGREDIENTES E NOTAS EM BADGES */
+    .drawer-badges-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .drawer-badge-pill {
+      background: #FFF;
+      border: 1px solid var(--border-strong);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* BOTÃO CTA DO DRAWER */
+    .drawer-footer {
+      padding: 12px 20px 18px;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border);
+    }
+    .drawer-cta-btn {
+      width: 100%;
+      background: var(--wa-green);
+      color: #FFF;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 30px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14.5px;
+      font-weight: 800;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .drawer-cta-btn:active {
+      background: var(--wa-dark);
+      transform: scale(0.98);
     }
   </style>
 </head>
@@ -452,10 +943,10 @@
 
   <!-- BARRA DE STATUS EM TEMPO REAL -->
   <div class="top-status-bar">
-    <div>Rod. Moura Gonzaga, 1895 • Rio Tavares</div>
-    <div class="status-pill">
+    <div class="top-address">📍 Rod. Moura Gonzaga, 1895 • Rio Tavares</div>
+    <div class="status-pill open-day" id="top-status-pill">
       <span class="status-dot"></span>
-      <span id="status-label">ABERTO AGORA</span>
+      <span id="top-status-label">CARREGANDO...</span>
     </div>
   </div>
 
@@ -464,30 +955,41 @@
     <h1 class="brand-title">ESPAÇO ITU</h1>
     <div class="brand-sub">Pizza Fermentação 48h & Café Especial</div>
     <div class="brand-meta">
-      <span>☕ Manhã (07h30 às 18h)</span>
+      <span class="brand-meta-badge">☕ Café (07h30 às 18h)</span>
       <span>•</span>
-      <span>🍕 Noite (18h às 23h)</span>
+      <span class="brand-meta-badge">🍕 Pizzas (18h às 23h)</span>
       <span>•</span>
-      <span>Segunda Fechado</span>
+      <span class="brand-meta-badge">Segunda Fechado</span>
     </div>
 
     <!-- SELO DE 5.0 ESTRELAS NO GOOGLE MAPS -->
     <div>
-      <a href="https://maps.google.com/?cid=1895" target="_blank" class="google-badge">
+      <a href="https://maps.google.com/?q=Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+1895+-+Rio+Tavares,+Florian%C3%B3polis+-+SC" target="_blank" class="google-badge" title="Ver avaliações no Google Maps">
         <span class="google-stars">★★★★★</span>
-        <span>5,0 no Google Maps (38 Avaliações)</span>
+        <span>5,0 no Google Maps (38 Avaliações Reais)</span>
       </a>
+    </div>
+
+    <!-- BANNER DINÂMICO DE FUNCIONAMENTO AGORA -->
+    <div class="live-status-card" id="live-status-card">
+      <div class="live-status-icon day" id="live-status-icon">☀️</div>
+      <div class="live-status-info">
+        <div class="live-status-title" id="live-status-title">ABERTO AGORA: TURNO CAFÉ & BRUNCH</div>
+        <div class="live-status-desc" id="live-status-desc">Café coado na hora, croissants folhados e brunch até às 18h. A partir das 18h, forno de pizza aceso!</div>
+      </div>
     </div>
   </header>
 
-  <!-- SELETOR DE TURNOS TÁTIL -->
+  <!-- SELETOR DE TURNOS TÁTIL COM MICROINTERAÇÃO -->
   <div class="shift-selector-container">
-    <div class="shift-selector">
-      <button class="shift-btn active" id="btn-shift-day" onclick="setShift('day')">
-        ☀️ Café & Brunch
+    <div class="shift-selector" role="tablist">
+      <button class="shift-btn active" id="btn-shift-day" onclick="setShift('day')" role="tab" aria-selected="true" aria-controls="section-day">
+        <span>☀️ Café & Brunch</span>
+        <span class="shift-tag">07h30-18h</span>
       </button>
-      <button class="shift-btn" id="btn-shift-night" onclick="setShift('night')">
-        🌙 Pizzas de 48h
+      <button class="shift-btn" id="btn-shift-night" onclick="setShift('night')" role="tab" aria-selected="false" aria-controls="section-night">
+        <span>🌙 Pizzas de 48h</span>
+        <span class="shift-tag">18h-23h</span>
       </button>
     </div>
   </div>
@@ -497,147 +999,229 @@
     <!-- HISTÓRIA REAL DOS PROPRIETÁRIOS -->
     <div class="story-card">
       <div class="story-grid">
-        <img src="assets/foto_donos_pizza.jpg" alt="Ele e a massa fresca de 48h no Espaço Itu" class="story-img">
+        <div class="story-img-wrap">
+          <img src="assets/foto_donos_pizza.jpg" alt="Ele e a massa fresca de 48h no Espaço Itu" class="story-img">
+          <div class="story-img-badge">Faixa-Preta</div>
+        </div>
         <div>
           <div class="story-tag">TRADIÇÃO & DISCIPLINA</div>
           <div class="story-title">Um Casal, Duas Paixões</div>
           <div class="story-desc">
-            <strong>Ela</strong> comanda o café especial, croissants e doces finos de terça a domingo. <strong>Ele</strong> — mestre faixa-preta de Jiu-Jitsu — prepara pessoalmente a massa artesanal que descansa rigorosas 48 horas em maturação biológica a frio.
+            <strong>Ela</strong> comanda o café especial, croissants e confeitaria artesanal. <strong>Ele</strong> — mestre faixa-preta de Jiu-Jitsu — prepara pessoalmente a massa artesanal que descansa rigorosas 48 horas em maturação biológica a frio.
           </div>
         </div>
       </div>
     </div>
 
     <!-- SEÇÃO DIA: CAFÉ & BRUNCH -->
-    <div id="section-day" class="menu-section active">
+    <div id="section-day" class="menu-section active" role="tabpanel">
       
       <div class="shift-banner">
         <h3>☕ Manhã & Tarde Acolhedora // 07h30 às 18h</h3>
-        <p><em>"Pare, respire, tome um café."</em> Grãos especiais selecionados, croissants franceses quentinhos, avocado toast e doces dourados assados na casa.</p>
+        <p><em>"Pare, respire, tome um café."</em> Grãos especiais selecionados, croissants franceses quentinhos, avocado toast e confeitaria artesanal.</p>
       </div>
 
       <div class="menu-category-title">Cafés Especiais & Bebidas</div>
 
-      <div class="item-card">
+      <!-- ITEM 1 -->
+      <div class="item-card" onclick="openProductDrawer('cafe-coado')">
         <div class="item-info">
-          <div class="item-name">Café Coado Filtrado Especial <span class="item-tag">Grãos Selecionados</span></div>
-          <div class="item-desc">Método filtrado valorizando notas sensoriais limpas, doces e corpo sedoso.</div>
-          <div class="item-price">R$ 12,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Café Coado Filtrado Especial</span>
+            <span class="item-tag">Grãos Selecionados</span>
+          </div>
+          <div class="item-desc">Método filtrado valorizando notas sensoriais limpas, doçura de caramelo e corpo aveludado.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 12,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Caf%C3%A9%20Coado%20Especial" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Caf%C3%A9%20Coado%20Especial%20(R$%2012,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- ITEM 2 -->
+      <div class="item-card" onclick="openProductDrawer('espresso-cappuccino')">
         <div class="item-info">
-          <div class="item-name">Espresso Duplo / Cappuccino Italiano</div>
-          <div class="item-desc">Extração perfeita com leite vaporizado em microespuma cremosa.</div>
-          <div class="item-price">R$ 14,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Espresso Duplo / Cappuccino Italiano</span>
+          </div>
+          <div class="item-desc">Extração sob pressão com crema aveludada e leite vaporizado em microespuma brilhante.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 14,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20um%20Cappuccino%20Italiano" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Cappuccino%20Italiano%20(R$%2014,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- ITEM 3 -->
+      <div class="item-card" onclick="openProductDrawer('smoothies-sucos')">
         <div class="item-info">
-          <div class="item-name">Smoothies da Casa & Sucos Naturais</div>
-          <div class="item-desc">Frutas frescas batidas na hora sem adição de conservantes.</div>
-          <div class="item-price">R$ 16,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Smoothies da Casa & Sucos Naturais</span>
+          </div>
+          <div class="item-desc">Frutas frescas batidas na hora sem adição de conservantes ou açúcares refinados.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 16,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20um%20Smoothie%20Natural" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20um%20Smoothie%20Natural%20(R$%2016,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
       <div class="menu-category-title">Brunch & Confeitaria Afetiva</div>
 
-      <div class="item-card">
+      <!-- ITEM 4 -->
+      <div class="item-card" onclick="openProductDrawer('croissant-geleia')">
         <div class="item-info">
-          <div class="item-name">Croissant com Geleia de Frutas Vermelhas <span class="item-tag">Campeão da Casa</span></div>
-          <div class="item-desc">Folhado amanteigado clássico, extremamente crocante por fora e macio por dentro, servido com geleia artesanal.</div>
-          <div class="item-price">R$ 18,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Croissant com Geleia de Frutas Vermelhas</span>
+            <span class="item-tag highlight">Campeão da Casa</span>
+          </div>
+          <div class="item-desc">Folhado amanteigado clássico com dobras francesas, ultracrocante por fora e macio por dentro.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 18,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Croissant%20com%20Geleia" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Croissant%20com%20Geleia%20(R$%2018,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- ITEM 5 -->
+      <div class="item-card" onclick="openProductDrawer('avocado-toast')">
         <div class="item-info">
-          <div class="item-name">Avocado Toast no Pão Artesanal</div>
-          <div class="item-desc">Pão de fermentação natural tostado na manteiga, pasta de abacate temperada, ovo poché ou caipira e sementes.</div>
-          <div class="item-price">R$ 28,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Avocado Toast no Pão Artesanal</span>
+          </div>
+          <div class="item-desc">Pão rústico tostado na manteiga de fazenda, pasta de abacate com flor de sal e ovos caipiras.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 28,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Avocado%20Toast" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Avocado%20Toast%20(R$%2028,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- ITEM 6 -->
+      <div class="item-card" onclick="openProductDrawer('torta-basca')">
         <div class="item-info">
-          <div class="item-name">Torta Basca Dourada Queimadinha <span class="item-tag">Fatia do Dia</span></div>
-          <div class="item-desc">A famosa cheesecake basca com casquinha tostada de caramelo e interior super cremoso e aveludado.</div>
-          <div class="item-price">R$ 18,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Torta Basca Dourada Queimadinha</span>
+            <span class="item-tag">Fatia do Dia</span>
+          </div>
+          <div class="item-desc">Cheesecake de San Sebastián com casquinha caramelizada e interior supercremoso e aveludado.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 18,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20fatia%20da%20Torta%20Basca" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20fatia%20da%20Torta%20Basca%20(R$%2018,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- ITEM 7 -->
+      <div class="item-card" onclick="openProductDrawer('queijadinha')">
         <div class="item-info">
-          <div class="item-name">Queijadinha Tradicional Paulista</div>
-          <div class="item-desc">Receita artesanal com coco úmido e queijo curado, assada dourada.</div>
-          <div class="item-price">R$ 10,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Queijadinha Tradicional Paulista</span>
+          </div>
+          <div class="item-desc">Receita artesanal com bastante coco fresco úmido e queijo curado, assada douradinha.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 10,00</span>
+            <span class="item-tap-hint">Ver detalhes ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20Queijadinha" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20Queijadinha%20Paulista%20(R$%2010,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
     </div>
 
     <!-- SEÇÃO NOITE: PIZZAS 48H -->
-    <div id="section-night" class="menu-section">
+    <div id="section-night" class="menu-section" role="tabpanel">
       
       <div class="shift-banner night-banner">
         <h3>🌙 Pizzaria Artesanal Paulista // 18h às 23h</h3>
-        <p><strong>A Disciplina das 48 Horas:</strong> Massa produzida à mão pelo faixa-preta. O repouso de dois dias na geladeira converte os amidos e gera a <em>"light dough"</em> elogiada nas avaliações do Maps: alvéolos altos, crocância e zero peso no estômago.</p>
+        <p><strong>A Disciplina das 48 Horas:</strong> Massa produzida à mão pelo mestre faixa-preta. O repouso biológico de 2 dias na câmara fria quebra os amidos e gera a <em>"light dough"</em> elogiada no Google Maps: alvéolos altos, crocância e zero peso no estômago.</p>
       </div>
 
       <div class="menu-category-title">Pizzas Especiais em Maturação 48h</div>
 
-      <div class="item-card">
+      <!-- PIZZA 1 -->
+      <div class="item-card" onclick="openProductDrawer('pizza-salmao')">
         <div class="item-info">
-          <div class="item-name">Pizza de Salmão Especial <span class="item-tag">Top 1 Avaliações</span></div>
-          <div class="item-desc">A criação autoral que surpreendeu os clientes no Google Maps (estilo sushi pizza): lâminas frescas de salmão, cream cheese maçaricado, tarê e gergelim sobre a leve massa de 48h.</div>
-          <div class="item-price">R$ 78,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Pizza de Salmão Especial</span>
+            <span class="item-tag highlight">Top 1 Avaliações</span>
+          </div>
+          <div class="item-desc">A criação que surpreendeu no Google Maps: lâminas frescas de salmão maçaricado, cream cheese, tarê e gergelim sobre a leve massa de 48h.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 78,00</span>
+            <span class="item-tap-hint">Ver segredo de preparo ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20de%20Salm%C3%A3o%20Especial" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20de%20Salm%C3%A3o%20Especial%20(R$%2078,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- PIZZA 2 -->
+      <div class="item-card" onclick="openProductDrawer('pizza-margherita')">
         <div class="item-info">
-          <div class="item-name">Pizza Margherita Autoral</div>
-          <div class="item-desc">Molho pelado italiano artesanal, mozzarella fatiada generosa, fatias de tomate caipira e manjericão fresco colhido no dia.</div>
-          <div class="item-price">R$ 62,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Pizza Margherita Autoral</span>
+            <span class="item-tag">Clássica Paulista</span>
+          </div>
+          <div class="item-desc">Molho pelado artesanal, mozzarella fatiada nobre generosa, fatias de tomate caipira e manjericão fresco colhido no dia.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 62,00</span>
+            <span class="item-tap-hint">Ver segredo de preparo ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Margherita" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Margherita%20Autoral%20(R$%2062,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- PIZZA 3 -->
+      <div class="item-card" onclick="openProductDrawer('pizza-calabresa')">
         <div class="item-info">
-          <div class="item-name">Calabresa Paulista com Cebola Roxa</div>
-          <div class="item-desc">Calabresa curada nobre artesanal fatiada fina, cebola roxa marinada, azeitonas pretas e orégano fresco sobre massa aerada de 48h.</div>
-          <div class="item-price">R$ 58,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Calabresa Paulista com Cebola Roxa</span>
+          </div>
+          <div class="item-desc">Calabresa curada nobre fatiada fina, cebola roxa marinada em azeite extravirgem, azeitonas chilenas e orégano fresco.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 58,00</span>
+            <span class="item-tap-hint">Ver segredo de preparo ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Calabresa%20Paulista" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Calabresa%20Paulista%20(R$%2058,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- PIZZA 4 -->
+      <div class="item-card" onclick="openProductDrawer('pizza-quatro-queijos')">
         <div class="item-info">
-          <div class="item-name">Quatro Queijos Nobres da Casa</div>
-          <div class="item-desc">Gorgonzola importado, catupiry original, provolone tostado e mozzarella da fazenda com recheio farto ("generous filling").</div>
-          <div class="item-price">R$ 68,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Quatro Queijos Nobres da Casa</span>
+            <span class="item-tag">Recheio Farto</span>
+          </div>
+          <div class="item-desc">Gorgonzola importado, Catupiry original cremoso, provolone defumado e mozzarella da fazenda com bordas infladas.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 68,00</span>
+            <span class="item-tap-hint">Ver segredo de preparo ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Quatro%20Queijos" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Quatro%20Queijos%20(R$%2068,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
-      <div class="item-card">
+      <!-- PIZZA 5 -->
+      <div class="item-card" onclick="openProductDrawer('pizza-parma')">
         <div class="item-info">
-          <div class="item-name">Parma com Rúcula & Parmesão</div>
-          <div class="item-desc">Presunto tipo Parma em fatias delicadas, rúcula selvagem fresca, azeite extravirgem e lascas de queijo parmesão maturado.</div>
-          <div class="item-price">R$ 75,00</div>
+          <div class="item-header-row">
+            <span class="item-name">Parma com Rúcula & Parmesão</span>
+            <span class="item-tag">Premium</span>
+          </div>
+          <div class="item-desc">Presunto tipo Parma em lâminas delicadas, rúcula selvagem crocante, lascas de queijo parmesão e azeite extravirgem.</div>
+          <div class="item-bottom-row">
+            <span class="item-price">R$ 75,00</span>
+            <span class="item-tap-hint">Ver segredo de preparo ›</span>
+          </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20de%20Parma%20com%20R%C3%BAcula" class="btn-order-item" target="_blank">Pedir</a>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20de%20Parma%20com%20R%C3%BAcula%20(R$%2075,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
       </div>
 
     </div>
@@ -655,7 +1239,7 @@
         <a href="https://maps.google.com/?q=Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+1895+-+Rio+Tavares,+Florian%C3%B3polis+-+SC" target="_blank" class="btn-loc btn-loc-maps">
           🗺️ Abrir no Google Maps
         </a>
-        <a href="https://wa.me/5548988605923" target="_blank" class="btn-loc btn-loc-wa">
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20Espa%C3%A7o%20Itu" target="_blank" class="btn-loc btn-loc-wa">
           💬 Falar no WhatsApp
         </a>
       </div>
@@ -670,31 +1254,377 @@
     </a>
   </div>
 
+  <!-- MODAL / BOTTOM SHEET DRAWER DE DETALHES DO PRODUTO -->
+  <div class="drawer-backdrop" id="product-drawer-backdrop" onclick="closeProductDrawer(event)">
+    <div class="drawer-sheet" onclick="event.stopPropagation()">
+      <div class="drawer-handle-bar">
+        <div class="drawer-handle"></div>
+        <button class="drawer-close-btn" onclick="closeProductDrawer()" aria-label="Fechar detalhes">✕</button>
+      </div>
+
+      <div class="drawer-content">
+        <div class="drawer-hero-img-wrap" id="drawer-hero-wrap">
+          <img src="assets/foto_pizza_maps.png" alt="Produto Espaço Itu" class="drawer-hero-img" id="drawer-hero-img">
+          <span class="drawer-hero-badge" id="drawer-hero-badge">ARTESANAL 48H</span>
+        </div>
+
+        <span class="drawer-category-tag" id="drawer-category-tag">TURNO NOITE</span>
+        <div class="drawer-title-row">
+          <h2 class="drawer-item-title" id="drawer-title">Nome do Item</h2>
+          <span class="drawer-item-price" id="drawer-price">R$ 0,00</span>
+        </div>
+        <p class="drawer-desc" id="drawer-desc">Descrição completa do item.</p>
+
+        <!-- SEGREDO DO PROCESSO ARTESANAL -->
+        <div class="drawer-process-card">
+          <div class="drawer-process-title">
+            <span id="drawer-process-icon">✨</span>
+            <span id="drawer-process-title">O Segredo do Mestre Faixa-Preta</span>
+          </div>
+          <div class="drawer-process-body" id="drawer-process-body">
+            Detalhes sobre o método artesanal, tempo de maturação ou extração do café.
+          </div>
+        </div>
+
+        <!-- BADGES SENSORIAIS / INGREDIENTES -->
+        <div class="drawer-badges-list" id="drawer-badges-list">
+          <!-- Injetado dinamicamente via JS -->
+        </div>
+      </div>
+
+      <div class="drawer-footer">
+        <a href="#" id="drawer-whatsapp-cta" target="_blank" class="drawer-cta-btn">
+          <span>💬</span> <span id="drawer-cta-text">Pedir no WhatsApp • R$ 0,00</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // CATÁLOGO DE DETALHES GASTRONÔMICOS RICOS
+    const PRODUCTS_DATA = {
+      'cafe-coado': {
+        title: 'Café Coado Filtrado Especial',
+        category: '☀️ CAFÉS ESPECIAIS & BRUNCH',
+        badge: 'GRÃOS SELECIONADOS 100% ARÁBICA',
+        price: 'R$ 12,00',
+        image: 'assets/foto_donos_pizza.jpg',
+        desc: 'Método artesanal filtrado que extrai a alma do café de altitude. Grãos com torra fresca média, valorizando a doçura natural da fruta, sem amargor residual e com corpo sedoso impecável.',
+        processTitle: 'O Ritual da Extração Especial',
+        processIcon: '☕',
+        processBody: 'Moído apenas segundos antes do preparo. A água mineral é aquecida à temperatura rigorosa de 92°C, realizando a pré-infusão aromática que desperta notas sensoriais de caramelo, chocolate e leve acidez cítrica.',
+        badges: ['Grãos 100% Arábica', 'Moído na Hora', 'Água Mineral 92°C', 'Zero Açúcar Necessário'],
+        whatsappMsg: 'Olá! Gostaria de pedir o Café Coado Filtrado Especial (R$ 12,00) que vi no cardápio online do Espaço Itu.'
+      },
+      'espresso-cappuccino': {
+        title: 'Espresso Duplo / Cappuccino Italiano',
+        category: '☀️ CAFÉS ESPECIAIS & BRUNCH',
+        badge: 'CREMA & MICROESPUMA',
+        price: 'R$ 14,00',
+        image: 'assets/foto_donos_pizza.jpg',
+        desc: 'Shot duplo encorpado de espresso nobre italiano extraído sob 9 bar de pressão, servido puro ou coroado com leite integral vaporizado até atingir textura cremosa de veludo.',
+        processTitle: 'Microespuma Termocontrolada',
+        processIcon: '🥛',
+        processBody: 'O leite é vaporizado a exatamente 65°C, criando a microespuma densa e brilhante tradicional da cafeteria europeia, finalizado com leve toque opcional de cacau 100%.',
+        badges: ['Duplo Shot 9 Bar', 'Leite Vaporizado 65°C', 'Crema Aveludada', 'Cacau Puro'],
+        whatsappMsg: 'Olá! Gostaria de pedir um Cappuccino Italiano / Espresso Duplo (R$ 14,00).'
+      },
+      'smoothies-sucos': {
+        title: 'Smoothies da Casa & Sucos Naturais',
+        category: '☀️ BEBIDAS REFRESCANTES',
+        badge: '100% FRUTA NATURAL',
+        price: 'R$ 16,00',
+        image: 'assets/foto_fachada_maps.png',
+        desc: 'Bebidas refrescantes preparadas exclusivamente com frutas in natura selecionadas. Sem polpas artificiais, sem conservantes e com frescor revigorante.',
+        processTitle: 'Preparo Imediato no Balcão',
+        processIcon: '🍓',
+        processBody: 'Opções populares: Frutas Vermelhas com Iogurte Natural da Fazenda, Manga com Maracujá e Hortelã, ou Laranja com Gengibre e Cenoura fresca batidos no ato.',
+        badges: ['Sem Conservantes', 'Sem Adição de Açúcar', 'Frutas Frescas da Estação', 'Refrescância Máxima'],
+        whatsappMsg: 'Olá! Gostaria de pedir um Smoothie / Suco Natural (R$ 16,00) da casa.'
+      },
+      'croissant-geleia': {
+        title: 'Croissant com Geleia de Frutas Vermelhas',
+        category: '☀️ BRUNCH & CONFEITARIA AFETIVA',
+        badge: 'FOLHADO COM MANTEIGA PURA',
+        price: 'R$ 18,00',
+        image: 'assets/foto_donos_pizza.jpg',
+        desc: 'A clássica massa folhada francesa com lâminas delicadas de manteiga de primeira linha. Casca dourada que estala ao morder e miolo aerado com textura de colmeia perfeita.',
+        processTitle: 'O Dobramento Tradicional Francês',
+        processIcon: '🥐',
+        processBody: 'A massa recebe repousos intercalados para manter a estrutura das lamelas de manteiga intactas. Acompanha geleia artesanal da casa, reduzida em fogo lento com amoras, morangos e mirtilos.',
+        badges: ['100% Manteiga Pura', 'Geleia Reduzida na Casa', 'Fornadas do Dia', 'Crocância Incomparável'],
+        whatsappMsg: 'Olá! Gostaria de pedir o Croissant com Geleia de Frutas Vermelhas (R$ 18,00).'
+      },
+      'avocado-toast': {
+        title: 'Avocado Toast no Pão Artesanal',
+        category: '☀️ BRUNCH & CONFEITARIA AFETIVA',
+        badge: 'FERMENTAÇÃO NATURAL & OVO CAIPIRA',
+        price: 'R$ 28,00',
+        image: 'assets/foto_donos_pizza.jpg',
+        desc: 'Fatia generosa de pão rústico de fermentação lenta tostada na manteiga, coberta com abacate hass cremoso temperado com flor de sal, azeite extravirgem, limão siciliano e ovo caipira.',
+        processTitle: 'Equilíbrio Nutricional & Afeto',
+        processIcon: '🥑',
+        processBody: 'O pão de casca rústica sustenta o creme fresco de abacate temperado no pilão, finalizado com mix crocante de sementes tostadas de girassol e gergelim negro.',
+        badges: ['Pão Fermentação Natural', 'Ovo Caipira Fresco', 'Flor de Sal & Limão Siciliano', 'Sementes Tostadas'],
+        whatsappMsg: 'Olá! Gostaria de pedir o Avocado Toast no Pão Artesanal (R$ 28,00).'
+      },
+      'torta-basca': {
+        title: 'Torta Basca Dourada Queimadinha',
+        category: '☀️ CONFEITARIA AFETIVA',
+        badge: 'SAN SEBASTIÁN CHEESECAKE',
+        price: 'R$ 18,00',
+        image: 'assets/foto_donos_pizza.jpg',
+        desc: 'A famosa sobremesa espanhola que conquistou a alta confeitaria mundial. Uma crosta dourada e caramelizada com notas profundas de toffee contrasta com um centro aveludado e cremoso.',
+        processTitle: 'Caramelização em Alta Temperatura',
+        processIcon: '🍰',
+        processBody: 'Assada em forno potente para queimar a superfície sem ressecar o interior. Produzida em pequenas fornadas pela proprietária para manter a textura densa e sedosa.',
+        badges: ['Receita San Sebastián', 'Creme de Queijo Nobre', 'Caramelo Natural Tostado', 'Textura Aveludada'],
+        whatsappMsg: 'Olá! Gostaria de reservar uma fatia da Torta Basca Dourada (R$ 18,00).'
+      },
+      'queijadinha': {
+        title: 'Queijadinha Tradicional Paulista',
+        category: '☀️ CONFEITARIA AFETIVA',
+        badge: 'TRADIÇÃO ARTESANAL DE SP',
+        price: 'R$ 10,00',
+        image: 'assets/foto_donos_pizza.jpg',
+        desc: 'Receita histórica paulista trazida às raízes do Espaço Itu. Muito coco ralado úmido, leite condensado e queijo de cura artesanal, resultando em casquinha crocante e miolo que desmancha.',
+        processTitle: 'Ponto Exato de Forno',
+        processIcon: '🥥',
+        processBody: 'O queijo curado equilibra o dulçor do coco fresco, criando uma sobremesa que acompanha com perfeição o Café Coado Especial da casa.',
+        badges: ['Coco Fresco Ralado', 'Queijo Curado Tradicional', 'Casca Douradinha', 'Feito no Dia'],
+        whatsappMsg: 'Olá! Gostaria de pedir uma Queijadinha Tradicional Paulista (R$ 10,00).'
+      },
+
+      'pizza-salmao': {
+        title: 'Pizza de Salmão Especial',
+        category: '🌙 PIZZAS EM MATURAÇÃO 48H',
+        badge: 'TOP 1 AVALIAÇÕES • SUSHI PIZZA',
+        price: 'R$ 78,00',
+        image: 'assets/foto_pizza_maps.png',
+        desc: 'A sensação de vendas e maior destaque espontâneo no Google Maps! Fatias selecionadas de salmão fresco suavemente maçaricado sobre a base leve de 48h, cream cheese, redução de tarê artesanal e gergelim.',
+        processTitle: 'A Massa de 48h do Faixa-Preta',
+        processIcon: '🥋',
+        processBody: 'A base descansa 48 horas em maturação biológica a frio. O glúten e os açúcares complexos são digeridos pelo tempo, gerando uma massa ultrafina e crocante que não pesa no estômago.',
+        badges: ['Massa Fermentada 48 Horas', 'Salmão Fresco Maçaricado', 'Cream Cheese Cremoso', 'Molho Tarê Autoral', 'Gergelim Tostado'],
+        whatsappMsg: 'Olá! Gostaria de encomendar a aclamada Pizza de Salmão Especial (R$ 78,00) de 48h.'
+      },
+      'pizza-margherita': {
+        title: 'Pizza Margherita Autoral',
+        category: '🌙 PIZZAS EM MATURAÇÃO 48H',
+        badge: 'CLÁSSICA NAPOLITANA PAULISTA',
+        price: 'R$ 62,00',
+        image: 'assets/foto_pizza_maps.png',
+        desc: 'A essência da tradição pizzaiola: molho rústico de tomate pelado italiano 100% artesanal, camada generosa de mozzarella de búfala e queijo da serra fatiado, rodelas de tomate fresco e manjericão perfumado.',
+        processTitle: 'Pomodoro Artesanal & Forno Quente',
+        processIcon: '🍅',
+        processBody: 'Molho cozido lentamente apenas com azeite extravirgem, sal e alho laminado. Ao tocar o forno em alta temperatura, as bordas aeradas da massa de 48h inflam e formam alvéolos crocantes.',
+        badges: ['Tomate Pelado Italiano', 'Mozzarella Generosa', 'Manjericão Fresco do Dia', 'Massa Digestão Leve'],
+        whatsappMsg: 'Olá! Gostaria de pedir a Pizza Margherita Autoral (R$ 62,00) de 48h.'
+      },
+      'pizza-calabresa': {
+        title: 'Calabresa Paulista com Cebola Roxa',
+        category: '🌙 PIZZAS EM MATURAÇÃO 48H',
+        badge: 'RECEITA PAULISTANA AUTÊNTICA',
+        price: 'R$ 58,00',
+        image: 'assets/foto_pizza_maps.png',
+        desc: 'Fiel à tradição das melhores pizzarias de São Paulo: calabresa curada defumada em lâminas finas, cebolas roxas marinadas em azeite de oliva, azeitonas pretas carnudas e orégano.',
+        processTitle: 'Cebola Roxa Marinada no Azeite',
+        processIcon: '🧅',
+        processBody: 'A cebola roxa passa por marinada suave para perder a ardência e caramelizar durante os minutos de forno, harmonizando perfeitamente com o defumado da calabresa.',
+        badges: ['Calabresa Nobre Defumada', 'Cebola Roxa Marinada', 'Azeitonas Pretas Chilenas', 'Bordas Crocantes 48h'],
+        whatsappMsg: 'Olá! Gostaria de pedir a Pizza Calabresa Paulista com Cebola Roxa (R$ 58,00).'
+      },
+      'pizza-quatro-queijos': {
+        title: 'Quatro Queijos Nobres da Casa',
+        category: '🌙 PIZZAS EM MATURAÇÃO 48H',
+        badge: 'RECHEIO FARTO & CATUPIRY ORIGINAL',
+        price: 'R$ 68,00',
+        image: 'assets/foto_pizza_maps.png',
+        desc: 'Harmonia perfeita entre queijos de personalidade: gorgonzola aromático de meia cura, Catupiry original cremoso, provolone defumado e mozzarella da fazenda com cobertura dourada e farta.',
+        processTitle: 'Ponto de Fusão dos Queijos',
+        processIcon: '🧀',
+        processBody: 'Os queijos são distribuídos de modo que o Catupiry permaneça cremoso enquanto o gorgonzola e provolone gratinam a crosta, acompanhando a base crocante de 48 horas.',
+        badges: ['Catupiry Original', 'Gorgonzola Nobre', 'Provolone Defumado', 'Mozzarella Artesanal'],
+        whatsappMsg: 'Olá! Gostaria de pedir a Pizza Quatro Queijos Nobres (R$ 68,00).'
+      },
+      'pizza-parma': {
+        title: 'Parma com Rúcula & Parmesão',
+        category: '🌙 PIZZAS EM MATURAÇÃO 48H',
+        badge: 'ALTA GASTRONOMIA ITALIANA',
+        price: 'R$ 75,00',
+        image: 'assets/foto_pizza_maps.png',
+        desc: 'Sofisticação e contraste: a massa de 48h é assada com molho e mozzarella, e finalizada logo após o forno com presunto cru tipo Parma fatiado ultrafino, rúcula selvagem fresca e lascas de queijo parmesão 12 meses.',
+        processTitle: 'Finalização a Frio para Preservar o Parma',
+        processIcon: '🥩',
+        processBody: 'O presunto tipo Parma e as folhas frescas de rúcula nunca são queimados no forno. Eles entram com a pizza fumegante na saída, mantendo a untuosidade e frescor originais.',
+        badges: ['Presunto Cru Tipo Parma', 'Rúcula Selvagem Fresca', 'Parmesão Maturado 12m', 'Azeite Extravirgem'],
+        whatsappMsg: 'Olá! Gostaria de pedir a Pizza de Parma com Rúcula e Parmesão (R$ 75,00).'
+      }
+    };
+
+    // CONTROLE DE TURNOS COM MICROINTERAÇÕES FLUIDAS
     function setShift(shift) {
       const btnDay = document.getElementById('btn-shift-day');
       const btnNight = document.getElementById('btn-shift-night');
       const secDay = document.getElementById('section-day');
       const secNight = document.getElementById('section-night');
 
+      // Feedback tátil no celular se suportado
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(10);
+      }
+
       if (shift === 'night') {
         btnDay.classList.remove('active');
+        btnDay.setAttribute('aria-selected', 'false');
         btnNight.classList.add('active', 'night');
+        btnNight.setAttribute('aria-selected', 'true');
+
         secDay.classList.remove('active');
         secNight.classList.add('active');
       } else {
         btnNight.classList.remove('active', 'night');
+        btnNight.setAttribute('aria-selected', 'false');
         btnDay.classList.add('active');
+        btnDay.setAttribute('aria-selected', 'true');
+
         secNight.classList.remove('active');
         secDay.classList.add('active');
       }
     }
 
-    // Auto-selecionar turno conforme horário local (se for após 18h, ativa turno noite)
-    const hour = new Date().getHours();
-    if (hour >= 18 || hour < 5) {
-      setShift('night');
+    // DRAWER / BOTTOM SHEET DE DETALHES
+    function openProductDrawer(productId) {
+      const item = PRODUCTS_DATA[productId];
+      if (!item) return;
+
+      // Feedback tátil
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(15);
+      }
+
+      document.getElementById('drawer-hero-img').src = item.image;
+      document.getElementById('drawer-hero-badge').textContent = item.badge;
+      document.getElementById('drawer-category-tag').textContent = item.category;
+      document.getElementById('drawer-title').textContent = item.title;
+      document.getElementById('drawer-price').textContent = item.price;
+      document.getElementById('drawer-desc').textContent = item.desc;
+      document.getElementById('drawer-process-icon').textContent = item.processIcon;
+      document.getElementById('drawer-process-title').textContent = item.processTitle;
+      document.getElementById('drawer-process-body').textContent = item.processBody;
+
+      // Renderizar badges de ingredientes
+      const badgesContainer = document.getElementById('drawer-badges-list');
+      badgesContainer.innerHTML = '';
+      item.badges.forEach(badgeText => {
+        const span = document.createElement('span');
+        span.className = 'drawer-badge-pill';
+        span.innerHTML = '✓ ' + badgeText;
+        badgesContainer.appendChild(span);
+      });
+
+      // Link do CTA
+      const encodedMsg = encodeURIComponent(item.whatsappMsg);
+      const ctaLink = document.getElementById('drawer-whatsapp-cta');
+      ctaLink.href = 'https://wa.me/5548988605923?text=' + encodedMsg;
+      document.getElementById('drawer-cta-text').textContent = 'Pedir no WhatsApp • ' + item.price;
+
+      // Abrir modal
+      const backdrop = document.getElementById('product-drawer-backdrop');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
+
+    function closeProductDrawer(event) {
+      const backdrop = document.getElementById('product-drawer-backdrop');
+      backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Fechar ao pressionar ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProductDrawer();
+      }
+    });
+
+    // SISTEMA DE STATUS DINÂMICO EM TEMPO REAL (HORÁRIOS & DIAS)
+    function updateDynamicStatus() {
+      const now = new Date();
+      const day = now.getDay(); // 0: Dom, 1: Seg, 2: Ter, 3: Qua, 4: Qui, 5: Sex, 6: Sab
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const timeVal = hours * 60 + minutes; // minutos desde a meia-noite
+
+      const topPill = document.getElementById('top-status-pill');
+      const topLabel = document.getElementById('top-status-label');
+      const cardIcon = document.getElementById('live-status-icon');
+      const cardTitle = document.getElementById('live-status-title');
+      const cardDesc = document.getElementById('live-status-desc');
+
+      // 07h30 = 7*60 + 30 = 450
+      // 18h00 = 18*60 = 1080
+      // 23h00 = 23*60 = 1380
+
+      if (day === 1) {
+        // SEGUNDA-FEIRA: FECHADO
+        topPill.className = 'status-pill closed';
+        topLabel.textContent = 'FECHADO HOJE (SEGUNDA)';
+
+        cardIcon.className = 'live-status-icon closed';
+        cardIcon.textContent = '🔒';
+        cardTitle.textContent = 'HOJE É SEGUNDA • DESCANSO SEMANAL';
+        cardDesc.textContent = 'Dia de produção e maturação a frio da massa de 48h. Reabrimos nesta terça-feira às 07h30 para o Café & Brunch!';
+        return 'day';
+      }
+
+      if (timeVal >= 450 && timeVal < 1080) {
+        // 07h30 às 18h00: ABERTO TURNO DIA
+        const minutesLeft = 1080 - timeVal;
+        const closingAlert = minutesLeft <= 45 ? ' (Turno Café encerra em ' + minutesLeft + 'min)' : '';
+
+        topPill.className = 'status-pill open-day';
+        topLabel.textContent = 'ABERTO AGORA • CAFÉ & BRUNCH';
+
+        cardIcon.className = 'live-status-icon day';
+        cardIcon.textContent = '☀️';
+        cardTitle.textContent = 'ABERTO AGORA: TURNO CAFÉ & BRUNCH (ATÉ 18h)' + closingAlert;
+        cardDesc.textContent = 'Café coado na hora, cappuccino italiano, croissants folhados e brunch. Às 18h acendemos o forno para as pizzas de 48h!';
+        return 'day';
+      } else if (timeVal >= 1080 && timeVal < 1380) {
+        // 18h00 às 23h00: ABERTO TURNO NOITE
+        const minutesLeft = 1380 - timeVal;
+        const closingAlert = minutesLeft <= 45 ? ' (Forno encerra em ' + minutesLeft + 'min)' : '';
+
+        topPill.className = 'status-pill open-night';
+        topLabel.textContent = 'ABERTO AGORA • PIZZAS DE 48H';
+
+        cardIcon.className = 'live-status-icon night';
+        cardIcon.textContent = '🍕';
+        cardTitle.textContent = 'ABERTO AGORA: FORNO DE PIZZA 48H A TODO VAPOR' + closingAlert;
+        cardDesc.textContent = 'Massa artesanal maturada 48 horas feita pelo mestre faixa-preta. Alvéolos crocantes e digestão ultraleve. Peça sem taxas pelo WhatsApp!';
+        return 'night';
+      } else {
+        // 23h00 às 07h30: FECHADO FORA DE EXPEDIENTE
+        topPill.className = 'status-pill closed';
+        topLabel.textContent = 'FECHADO NO MOMENTO';
+
+        cardIcon.className = 'live-status-icon closed';
+        cardIcon.textContent = '🌙';
+        cardTitle.textContent = 'CASA FECHADA NESTE MOMENTO';
+        cardDesc.textContent = 'Reabrimos às 07h30 com café fresquinho, brunch e croissants artesanais. Faça sua encomenda antecipada pelo WhatsApp!';
+        return 'night';
+      }
+    }
+
+    // Inicialização ao carregar
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeShift = updateDynamicStatus();
+      setShift(activeShift);
+
+      // Atualizar status a cada 60 segundos
+      setInterval(updateDynamicStatus, 60000);
+    });
   </script>
 </body>
 </html>
