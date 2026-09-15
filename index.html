@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="pt-BR" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <title>Espaço Itu | Pizza Artesanal Fermentação 48h & Café Especial • Rio Tavares</title>
+  <meta name="description" content="Pizza de fermentação lenta maturada por 48h feita pelo faixa-preta e café especial de alta qualidade com croissants e brunch tocado por ela. Rod. Dr. Antônio Luiz Moura Gonzaga, 1895 - Rio Tavares, Florianópolis. Pedidos direto no WhatsApp!">
+  <meta name="theme-color" content="#2C1B11">
+
+  <!-- Open Graph / WhatsApp Preview Canônico -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://advocaciadigitalavancada-create.github.io/espaco-itu/">
+  <meta property="og:title" content="Espaço Itu • Pizza Fermentada 48h & Café Especial">
+  <meta property="og:description" content="Ele na massa artesanal de 48h (mestre faixa-preta). Ela no café de alta qualidade e brunch. 5.0★ no Google Maps. Peça direto no WhatsApp sem taxas!">
+  <meta property="og:image" content="https://advocaciadigitalavancada-create.github.io/espaco-itu/assets/foto_donos_pizza.jpg">
+  <meta property="og:image:secure_url" content="https://advocaciadigitalavancada-create.github.io/espaco-itu/assets/foto_donos_pizza.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Espaço Itu - Rio Tavares">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --surface: #FFFFFF;
+      --primary: #2C1B11;
+      --accent: #B84A28;
+      --accent-light: #FBF0EB;
+      --gold: #C5A059;
+      --gold-light: #FDF9F0;
+      --ink: #2C1B11;
+      --ink-muted: #6B5B52;
+      --border: #E8DFD8;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      line-height: 1.5;
+      padding-bottom: 90px;
+    }
+
+    /* BARRA SUPERIOR DE HORÁRIOS & STATUS */
+    .top-status-bar {
+      background: var(--primary);
+      color: #FFF;
+      padding: 8px 16px;
+      font-size: 11.5px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #4ADE80;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #4ADE80;
+    }
+
+    /* HEADER COM LOGO E FOTO */
+    header {
+      background: #FFF;
+      border-bottom: 1px solid var(--border);
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .brand-sub {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 6px;
+    }
+    .brand-meta {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* BADGE GOOGLE MAPS 5.0 */
+    .google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-light);
+      border: 1px solid #E2D1A8;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #785819;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+    .google-stars {
+      color: #EAB308;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* SELETOR DE TURNOS TÁTIL (DIA vs NOITE) */
+    .shift-selector-container {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .shift-selector {
+      background: #E8DFD8;
+      border-radius: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 4px;
+      gap: 4px;
+    }
+    .shift-btn {
+      border: none;
+      background: transparent;
+      padding: 10px 12px;
+      border-radius: 26px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--ink-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .shift-btn.active {
+      background: #FFF;
+      color: var(--primary);
+      box-shadow: 0 2px 8px rgba(44, 27, 17, 0.12);
+    }
+    .shift-btn.active.night {
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* BOX AUTORAL: A HISTÓRIA DO CASAL */
+    .story-card {
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .story-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+    .story-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .story-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 2px 0 4px;
+    }
+    .story-desc {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: var(--ink-muted);
+    }
+
+    /* BANNER DE DESTAQUE DO TURNO */
+    .shift-banner {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 20px;
+    }
+    .shift-banner.night-banner {
+      background: #23160E;
+      border-left: 4px solid var(--gold);
+      color: #FFF;
+    }
+    .shift-banner h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .shift-banner p {
+      font-size: 12.5px;
+      line-height: 1.4;
+    }
+    .shift-banner.night-banner p {
+      color: #D1C5BC;
+    }
+
+    /* GRUPOS DO CARDÁPIO */
+    .menu-section {
+      display: none;
+    }
+    .menu-section.active {
+      display: block;
+    }
+    .menu-category-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .menu-category-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* CARDS DE ITENS */
+    .item-card {
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+    .item-info {
+      flex: 1;
+    }
+    .item-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .item-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .item-desc {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+    .item-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 6px;
+    }
+    .btn-order-item {
+      background: #25D366;
+      color: #FFF;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* MÓDULO COMO CHEGAR */
+    .location-card {
+      background: #FFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-top: 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .location-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .location-info {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+    .location-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .btn-loc {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+    .btn-loc-maps {
+      background: var(--primary);
+      color: #FFF;
+    }
+    .btn-loc-wa {
+      background: #25D366;
+      color: #FFF;
+    }
+
+    /* BARRA FIXA INFERIOR */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #FFF;
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: center;
+      z-index: 999;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+    }
+    .btn-cta-main {
+      width: 100%;
+      max-width: 680px;
+      background: #25D366;
+      color: #FFF;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 30px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE STATUS EM TEMPO REAL -->
+  <div class="top-status-bar">
+    <div>Rod. Moura Gonzaga, 1895 • Rio Tavares</div>
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span id="status-label">ABERTO AGORA</span>
+    </div>
+  </div>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <h1 class="brand-title">ESPAÇO ITU</h1>
+    <div class="brand-sub">Pizza Fermentação 48h & Café Especial</div>
+    <div class="brand-meta">
+      <span>☕ Manhã (07h30 às 18h)</span>
+      <span>•</span>
+      <span>🍕 Noite (18h às 23h)</span>
+      <span>•</span>
+      <span>Segunda Fechado</span>
+    </div>
+
+    <!-- SELO DE 5.0 ESTRELAS NO GOOGLE MAPS -->
+    <div>
+      <a href="https://maps.google.com/?cid=1895" target="_blank" class="google-badge">
+        <span class="google-stars">★★★★★</span>
+        <span>5,0 no Google Maps (38 Avaliações)</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- SELETOR DE TURNOS TÁTIL -->
+  <div class="shift-selector-container">
+    <div class="shift-selector">
+      <button class="shift-btn active" id="btn-shift-day" onclick="setShift('day')">
+        ☀️ Café & Brunch
+      </button>
+      <button class="shift-btn" id="btn-shift-night" onclick="setShift('night')">
+        🌙 Pizzas de 48h
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- HISTÓRIA REAL DOS PROPRIETÁRIOS -->
+    <div class="story-card">
+      <div class="story-grid">
+        <img src="assets/foto_donos_pizza.jpg" alt="Ele e a massa fresca de 48h no Espaço Itu" class="story-img">
+        <div>
+          <div class="story-tag">TRADIÇÃO & DISCIPLINA</div>
+          <div class="story-title">Um Casal, Duas Paixões</div>
+          <div class="story-desc">
+            <strong>Ela</strong> comanda o café especial, croissants e doces finos de terça a domingo. <strong>Ele</strong> — mestre faixa-preta de Jiu-Jitsu — prepara pessoalmente a massa artesanal que descansa rigorosas 48 horas em maturação biológica a frio.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO DIA: CAFÉ & BRUNCH -->
+    <div id="section-day" class="menu-section active">
+      
+      <div class="shift-banner">
+        <h3>☕ Manhã & Tarde Acolhedora // 07h30 às 18h</h3>
+        <p><em>"Pare, respire, tome um café."</em> Grãos especiais selecionados, croissants franceses quentinhos, avocado toast e doces dourados assados na casa.</p>
+      </div>
+
+      <div class="menu-category-title">Cafés Especiais & Bebidas</div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Café Coado Filtrado Especial <span class="item-tag">Grãos Selecionados</span></div>
+          <div class="item-desc">Método filtrado valorizando notas sensoriais limpas, doces e corpo sedoso.</div>
+          <div class="item-price">R$ 12,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Caf%C3%A9%20Coado%20Especial" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Espresso Duplo / Cappuccino Italiano</div>
+          <div class="item-desc">Extração perfeita com leite vaporizado em microespuma cremosa.</div>
+          <div class="item-price">R$ 14,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20um%20Cappuccino%20Italiano" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Smoothies da Casa & Sucos Naturais</div>
+          <div class="item-desc">Frutas frescas batidas na hora sem adição de conservantes.</div>
+          <div class="item-price">R$ 16,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20um%20Smoothie%20Natural" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="menu-category-title">Brunch & Confeitaria Afetiva</div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Croissant com Geleia de Frutas Vermelhas <span class="item-tag">Campeão da Casa</span></div>
+          <div class="item-desc">Folhado amanteigado clássico, extremamente crocante por fora e macio por dentro, servido com geleia artesanal.</div>
+          <div class="item-price">R$ 18,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Croissant%20com%20Geleia" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Avocado Toast no Pão Artesanal</div>
+          <div class="item-desc">Pão de fermentação natural tostado na manteiga, pasta de abacate temperada, ovo poché ou caipira e sementes.</div>
+          <div class="item-price">R$ 28,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Avocado%20Toast" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Torta Basca Dourada Queimadinha <span class="item-tag">Fatia do Dia</span></div>
+          <div class="item-desc">A famosa cheesecake basca com casquinha tostada de caramelo e interior super cremoso e aveludado.</div>
+          <div class="item-price">R$ 18,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20fatia%20da%20Torta%20Basca" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Queijadinha Tradicional Paulista</div>
+          <div class="item-desc">Receita artesanal com coco úmido e queijo curado, assada dourada.</div>
+          <div class="item-price">R$ 10,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20Queijadinha" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+    </div>
+
+    <!-- SEÇÃO NOITE: PIZZAS 48H -->
+    <div id="section-night" class="menu-section">
+      
+      <div class="shift-banner night-banner">
+        <h3>🌙 Pizzaria Artesanal Paulista // 18h às 23h</h3>
+        <p><strong>A Disciplina das 48 Horas:</strong> Massa produzida à mão pelo faixa-preta. O repouso de dois dias na geladeira converte os amidos e gera a <em>"light dough"</em> elogiada nas avaliações do Maps: alvéolos altos, crocância e zero peso no estômago.</p>
+      </div>
+
+      <div class="menu-category-title">Pizzas Especiais em Maturação 48h</div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Pizza de Salmão Especial <span class="item-tag">Top 1 Avaliações</span></div>
+          <div class="item-desc">A criação autoral que surpreendeu os clientes no Google Maps (estilo sushi pizza): lâminas frescas de salmão, cream cheese maçaricado, tarê e gergelim sobre a leve massa de 48h.</div>
+          <div class="item-price">R$ 78,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20de%20Salm%C3%A3o%20Especial" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Pizza Margherita Autoral</div>
+          <div class="item-desc">Molho pelado italiano artesanal, mozzarella fatiada generosa, fatias de tomate caipira e manjericão fresco colhido no dia.</div>
+          <div class="item-price">R$ 62,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Margherita" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Calabresa Paulista com Cebola Roxa</div>
+          <div class="item-desc">Calabresa curada nobre artesanal fatiada fina, cebola roxa marinada, azeitonas pretas e orégano fresco sobre massa aerada de 48h.</div>
+          <div class="item-price">R$ 58,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Calabresa%20Paulista" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Quatro Queijos Nobres da Casa</div>
+          <div class="item-desc">Gorgonzola importado, catupiry original, provolone tostado e mozzarella da fazenda com recheio farto ("generous filling").</div>
+          <div class="item-price">R$ 68,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20Quatro%20Queijos" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-name">Parma com Rúcula & Parmesão</div>
+          <div class="item-desc">Presunto tipo Parma em fatias delicadas, rúcula selvagem fresca, azeite extravirgem e lascas de queijo parmesão maturado.</div>
+          <div class="item-price">R$ 75,00</div>
+        </div>
+        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Quero%20pedir%20a%20Pizza%20de%20Parma%20com%20R%C3%BAcula" class="btn-order-item" target="_blank">Pedir</a>
+      </div>
+
+    </div>
+
+    <!-- MÓDULO COMO CHEGAR & CONTATO -->
+    <div class="location-card">
+      <div class="location-title">📍 Como Chegar no Espaço Itu</div>
+      <div class="location-info">
+        <strong>Endereço:</strong> Rodovia Dr. Antônio Luiz Moura Gonzaga, 1895<br>
+        Bairro Rio Tavares, Florianópolis - SC, 88048-300<br>
+        <em>Estacionamento fácil e vagas na frente para parada rápida ou retirada no balcão.</em><br>
+        <strong>Telefone / WhatsApp:</strong> (48) 98860-5923
+      </div>
+      <div class="location-actions">
+        <a href="https://maps.google.com/?q=Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+1895+-+Rio+Tavares,+Florian%C3%B3polis+-+SC" target="_blank" class="btn-loc btn-loc-maps">
+          🗺️ Abrir no Google Maps
+        </a>
+        <a href="https://wa.me/5548988605923" target="_blank" class="btn-loc btn-loc-wa">
+          💬 Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BARRA FIXA DE PEDIDO NO WHATSAPP -->
+  <div class="bottom-bar">
+    <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20Espa%C3%A7o%20Itu%20e%20gostaria%20de%20fazer%20um%20pedido" target="_blank" class="btn-cta-main">
+      <span>💬</span> Pedir no WhatsApp Direto da Casa
+    </a>
+  </div>
+
+  <script>
+    function setShift(shift) {
+      const btnDay = document.getElementById('btn-shift-day');
+      const btnNight = document.getElementById('btn-shift-night');
+      const secDay = document.getElementById('section-day');
+      const secNight = document.getElementById('section-night');
+
+      if (shift === 'night') {
+        btnDay.classList.remove('active');
+        btnNight.classList.add('active', 'night');
+        secDay.classList.remove('active');
+        secNight.classList.add('active');
+      } else {
+        btnNight.classList.remove('active', 'night');
+        btnDay.classList.add('active');
+        secNight.classList.remove('active');
+        secDay.classList.add('active');
+      }
+    }
+
+    // Auto-selecionar turno conforme horário local (se for após 18h, ativa turno noite)
+    const hour = new Date().getHours();
+    if (hour >= 18 || hour < 5) {
+      setShift('night');
+    }
+  </script>
+</body>
+</html>

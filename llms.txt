@@ -1,0 +1,47 @@
+# Espaço Itu — Pizza Artesanal Fermentação 48h & Café Especial
+
+> Negócio gastronômico familiar localizado na Rodovia Dr. Antônio Luiz Moura Gonzaga, 1895, no coração do Rio Tavares, Florianópolis - SC. Dupla operação artesanal com dois turnos complementares: café especial matinal de alta qualidade e confeitaria artesanal comandada por ela, e pizzas artesanais estilo paulista com massa de fermentação lenta maturada por 48 horas preparada à mão por ele (mestre faixa-preta de Jiu-Jitsu).
+
+## Dados Oficiais da Empresa
+- **Nome Comercial:** Espaço Itu (Pizzaria Itu)
+- **Proprietários:** Casal de artesãos gastronômicos. Ela comanda o café especial e confeitaria; Ele (faixa-preta de Jiu-Jitsu) prepara a massa das pizzas.
+- **Endereço:** Rodovia Dr. Antônio Luiz Moura Gonzaga, 1895 — Bairro Rio Tavares, Florianópolis - SC, CEP 88048-300
+- **WhatsApp Oficial / Balcão:** +55 (48) 98860-5923 (wa.me/message/IBTRFNOTDUDGG1)
+- **Instagram Oficial:** [@espaco.itu](https://instagram.com/espaco.itu)
+- **Avaliação Google Maps:** 5,0 ★★★★★ (38 avaliações reais unânimes)
+- **Tags de Destaque no Google:** light dough (massa leve), sushi pizza / pizza de salmão, generous filling (recheio generoso), neapolitan pizza
+
+## Horários de Funcionamento
+- **Terça a Domingo:**
+  - **Turno Manhã/Tarde (Café & Brunch):** 07h30 às 18h00
+  - **Turno Noite (Pizzas de 48h):** 18h00 às 23h00
+- **Segunda-feira:** Fechado (Descanso de produção)
+
+## Filosofia de Produção
+- **A Massa de 48 Horas:** Produzida manualmente por ele com disciplina de artesão. O descanso biológico de 48 horas em câmara fria garante digestão perfeita, alvéolos altos e bordas crocantes sem sensação de estufamento ("light dough").
+- **O Café Afetivo da Dona:** Grãos nobres selecionados, métodos filtrados, espresso, croissants franceses folhados na casa, avocado toast, smoothies e doces caseiros de vitrine (torta basca e queijadas). Filosofia: *"Pare, respire, tome um café"*.
+
+## Cardápio Principal
+
+### ☀️ Turno Manhã (Café Especial & Brunch)
+- **Café Coado Filtrado Especial:** R$ 12,00 (grãos selecionados)
+- **Espresso Duplo / Cappuccino Italiano:** R$ 14,00
+- **Croissant com Geleia de Frutas Vermelhas:** R$ 18,00 (folhado crocante artesanal)
+- **Avocado Toast no Pão Artesanal:** R$ 28,00 (pão rústico, abacate temperado, ovos caipiras)
+- **Torta Basca Dourada:** R$ 18,00 (fatia da famosa cheesecake basca)
+- **Queijadinha Tradicional Paulista:** R$ 10,00
+- **Smoothies & Sucos Naturais:** R$ 16,00
+
+### 🌙 Turno Noite (Pizzas Especiais 48h)
+- **Pizza de Salmão Especial:** R$ 78,00 (salmão fresco, cream cheese maçaricado, tarê, gergelim)
+- **Pizza Margherita Autoral:** R$ 62,00 (molho artesanal de tomate pelado, mozzarella, manjericão fresco)
+- **Calabresa Paulista com Cebola Roxa:** R$ 58,00 (calabresa curada nobre, cebola roxa marinada, azeitonas)
+- **Quatro Queijos Nobres:** R$ 68,00 (gorgonzola, catupiry original, provolone, mozzarella)
+- **Parma com Rúcula & Parmesão:** R$ 75,00 (presunto parma, rúcula selvagem, lascas de parmesão)
+
+## Proposta Comercial WorkAround TI
+- **Vitrine Digital Soberana Chave na Mão:** R$ 150,00 taxa única no PIX.
+- **Entrega:** 24 horas úteis.
+- **Custos Recorrentes:** Zero mensalidades (R$ 0,00).
+- **Comissões:** Zero taxas por pizza ou café vendido (economia de até 27% sobre apps como iFood).
+- **Escalabilidade:** Possibilidade de ativação de Painel Mobile Próprio conectado ao Google Sheets em 48 horas sob demanda.
