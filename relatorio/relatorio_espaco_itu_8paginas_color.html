@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Espaço Itu — Dossiê Estratégico e Proposta Executiva 8 Páginas (Edição Colorida)</title>
+<meta name="workaround:engine" content="Playwright / Edge Headless">
+<meta name="workaround:format" content="A4-TENSION-GRID-8P">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  :root {
+    --bg-page: #FAF8F5;
+    --c-primary: #24140B;
+    --c-accent: #B84A28;
+    --c-accent-soft: #F7EBE4;
+    --c-gold: #C5A059;
+    --c-gold-bg: #FDF9F0;
+    --c-ink: #24140B;
+    --c-ink-muted: #5C4A3E;
+    --c-border: #E2D7CE;
+    --c-border-strong: #24140B;
+    --c-surface: #FFFFFF;
+  }
+  body {
+    background-color: #EAE4DC;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--c-ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    position: relative;
+    padding: 7.5mm 12mm 7.5mm 12mm;
+    overflow: hidden;
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto 10mm auto;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+  }
+  @media print {
+    body { background: transparent; }
+    .page { margin: 0; box-shadow: none; }
+  }
+  .doc-header {
+    height: 7.5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--c-border-strong);
+    padding-bottom: 1.5mm;
+    flex-shrink: 0;
+  }
+  .doc-header .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-primary);
+  }
+  .doc-header .serial {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.8pt;
+    font-weight: 700;
+    color: var(--c-accent);
+  }
+  .doc-footer {
+    height: 7.5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1.5px solid var(--c-border-strong);
+    padding-top: 1.5mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    color: var(--c-ink-muted);
+    flex-shrink: 0;
+  }
+  .doc-footer .page-indicator {
+    font-weight: 800;
+    background: var(--c-primary);
+    color: #FFF;
+    padding: 0.8mm 3.5mm;
+  }
+  .page-main {
+    height: 260mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  /* TIPOGRAFIA BAUHAUS */
+  .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    margin-bottom: 0.8mm;
+  }
+  h1.page-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26pt;
+    line-height: 0.92;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--c-primary);
+  }
+  h2.page-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--c-ink-muted);
+    margin-top: 1mm;
+    margin-bottom: 2mm;
+  }
+  h2.section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--c-primary);
+    border-bottom: 1.5px solid var(--c-border-strong);
+    padding-bottom: 0.8mm;
+    margin-bottom: 2.2mm;
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+  }
+  .sec-pill {
+    background: var(--c-primary);
+    color: #FFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    padding: 0.4mm 2mm;
+    font-weight: 800;
+  }
+  .sec-pill.accent {
+    background: var(--c-accent);
+  }
+  p.lead {
+    font-size: 8.2pt;
+    line-height: 1.42;
+    color: var(--c-ink-muted);
+    margin-bottom: 2.5mm;
+  }
+
+  /* COMPONENTES BAUHAUS */
+  .b-box {
+    border: 1.5px solid var(--c-border-strong);
+    background: #FFF;
+    padding: 2.5mm 3.5mm;
+  }
+  .b-box.dark {
+    background: var(--c-primary);
+    color: #FFF;
+  }
+  .b-box.accent {
+    background: var(--c-accent-soft);
+    border-color: var(--c-accent);
+  }
+  .b-box.gold {
+    background: var(--c-gold-bg);
+    border-color: var(--c-gold);
+  }
+  .tech-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.8pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: inline-block;
+    padding: 0.5mm 2mm;
+    background: var(--c-primary);
+    color: #FFF;
+    margin-bottom: 1mm;
+  }
+  .tech-badge.accent { background: var(--c-accent); }
+  .tech-badge.gold { background: var(--c-gold); color: #1A110C; }
+
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5mm;
+  }
+  .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3mm;
+  }
+
+  /* TABELAS */
+  .b-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.3pt;
+    border: 1.5px solid var(--c-border-strong);
+    margin: 1.5mm 0;
+  }
+  .b-table th {
+    background: var(--c-primary);
+    color: #FFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.8pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 1.5mm 2.2mm;
+    text-align: left;
+    border: 1px solid var(--c-primary);
+  }
+  .b-table td {
+    padding: 1.5mm 2.2mm;
+    border: 1px solid var(--c-border);
+    line-height: 1.28;
+    background: #FFF;
+  }
+  .b-table tr:nth-child(even) td {
+    background: rgba(44, 27, 17, 0.03);
+  }
+
+  /* MOLDURAS FOTOGRÁFICAS */
+  .img-frame {
+    border: 1.5px solid var(--c-border-strong);
+    overflow: hidden;
+    background: #EAE6E1;
+    position: relative;
+  }
+  .img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    
+  }
+
+  /* CARIMBO DE VALIDADE 48H À CANETA */
+  .urgency-stamp {
+    border: 1.5px dashed var(--c-accent);
+    background: #FFF;
+    padding: 1.5mm 2.5mm;
+    margin-bottom: 2mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3mm;
+  }
+  .stamp-pen-box {
+    border: 1px solid var(--c-border);
+    background: var(--c-accent-soft);
+    padding: 1mm 2.2mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    color: var(--c-primary);
+    white-space: nowrap;
+    line-height: 1.35;
+  }
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 01: CAPA MONUMENTAL & IDENTIDADE DO CLIENTE -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // DOSSIÊ ESTRATÉGICO RIO TAVARES</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #01</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <!-- CARIMBO DE VALIDADE 48H À CANETA -->
+      <div class="urgency-stamp" style="margin-bottom: 2mm;">
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size:7pt; font-weight:800; color:var(--c-accent); text-transform:uppercase; letter-spacing:0.08em;">
+            ⚡ CONDIÇÃO RELÂMPAGO // VALIDADE ESTRITA: 48 HORAS
+          </div>
+          <div style="font-size:7.1pt; line-height:1.25; color:var(--c-ink-muted);">
+            Preço de vizinhança <strong>R$ 183 (ou 50% em Permuta de Balcão)</strong> válido por 48 horas porque preciso trocar a tela do meu celular.
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:2.5mm; flex-shrink:0;">
+          <div style="font-family:'JetBrains Mono', monospace; font-size:6.2pt; font-weight:800; color:var(--c-primary); text-align:right; line-height:1.15;">
+            PREENCHER À CANETA<br>HORÁRIO LIMITE:
+          </div>
+          <div style="width: 36mm; height: 9mm; background: #E8E8E8; border: 1.5px solid var(--c-border-strong); border-radius: 3px;"></div>
+        </div>
+      </div>
+
+      <div class="kicker">RELATÓRIO EXECUTIVO DE TRANSIÇÃO DIGITAL SOBERANA</div>
+      <h1 class="page-title" style="font-size: 30pt;">ESPAÇO ITU</h1>
+      <div class="page-subtitle">Pizza Artesanal em Fermentação 48h & Café Especial • Rod. Dr. Antônio Luiz Moura Gonzaga, 1895 • Rio Tavares</div>
+    </div>
+
+    <div class="grid-2col" style="gap: 4mm;">
+      <div class="img-frame" style="height: 52mm;">
+        <img src="../assets/foto_pizza_maps.png" alt="Pizza artesanal paulista de longa fermentação 48h">
+      </div>
+      <div class="img-frame" style="height: 52mm;">
+        <img src="../assets/foto_tostada_insta_hd.jpg" alt="Tostada de frutas vermelhas e brunch artesanal do café">
+      </div>
+    </div>
+
+    <div class="b-box accent" style="padding: 2.2mm 3.2mm;">
+      <div class="tech-badge accent">SUMÁRIO EXECUTIVO // A ALMA DO RIO TAVARES</div>
+      <p style="font-size: 7.8pt; line-height: 1.38; color: var(--c-ink);">
+        O <strong>Espaço Itu</strong> representa a mais pura essência do comércio afetivo e gastronômico do Sul da Ilha. Um negócio com operação autoral e familiar em dois turnos bem definidos: <strong>ela</strong> comanda o café especial matinal e vespertino (07h30 às 18h — croissants folhados, avocado toast, torta basca dourada e acolhimento presencial de salão, <em>sem delivery</em> sob o lema <em>"Pare, respire, tome um café"</em>); <strong>ele</strong> — mestre faixa-preta de Jiu-Jitsu — prepara à mão a massa que descansa rigorosas 48 horas em maturação a frio (18h às 23h — salão e delivery próprio no WhatsApp sem pagar 27% para o iFood). Este dossiê detalha como consolidar essa autoridade e transferir 100% dos pedidos para a casa sem intermediários.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="section-heading"><span class="sec-pill">01</span> DADOS CADASTRAIS & AUDITORIA OPERACIONAL</h2>
+      <table class="b-table">
+        <tr>
+          <td style="width: 28%;"><strong>Razão / Marca</strong></td>
+          <td style="width: 72%;"><strong>ESPAÇO ITU</strong> (Pizzaria Itu & Café Especial)</td>
+        </tr>
+        <tr>
+          <td><strong>Endereço Físico</strong></td>
+          <td>Rodovia Dr. Antônio Luiz Moura Gonzaga, 1895 — Rio Tavares, Florianópolis - SC (CEP 88048-300)</td>
+        </tr>
+        <tr>
+          <td><strong>Canais Oficiais</strong></td>
+          <td>WhatsApp: (48) 98860-5923 &bull; Instagram Oficial: @espaco.itu &bull; Google Maps: 5,0 ★★★★★ (38 avaliações)</td>
+        </tr>
+        <tr>
+          <td><strong>Horários de Operação</strong></td>
+          <td>Terça a Domingo: ☀️ Café & Brunch Presencial (07h30 às 18h) | 🌙 Pizzas de 48h (18h às 23h) &bull; Segunda Fechado</td>
+        </tr>
+        <tr>
+          <td><strong>Vínculo de Vizinhança</strong></td>
+          <td><strong>Primeiro café do fundador Carlos Linzmeyer no bairro</strong>; recepção calorosa inesquecível no Rio Tavares.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 01 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 02: TRADIÇÃO FAMILIAR & MEMÓRIA AFETIVA -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // RADIOGRAFIA DE VALOR</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #02</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <div class="kicker">CAPÍTULO 01 // AUTENTICIDADE E PROPÓSITO</div>
+      <h1 class="page-title">TRADIÇÃO FAMILIAR & ALMA ARTESANAL</h1>
+      <div class="page-subtitle">A Disciplina Marcial da Massa 48h e o Acolhimento do Primeiro Café</div>
+    </div>
+
+    <div class="grid-2col">
+      <div class="b-box">
+        <div class="tech-badge">ELE // FAIXA-PRETA & PIZZAIOLO</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:10pt; font-weight:800; margin-bottom:1.2mm; text-transform:uppercase;">A Disciplina das 48 Horas</h3>
+        <p style="font-size:7.6pt; line-height:1.36; color:var(--c-ink-muted);">
+          No tatame, a faixa preta de Jiu-Jitsu não é dada, é conquistada através de paciência, repetição e precisão cirúrgica. Na cozinha do Espaço Itu, ele aplica exatamente a mesma filosofia à massa de pizza ao lado de sua família e de seu pai. 
+        </p>
+        <p style="font-size:7.6pt; line-height:1.36; color:var(--c-ink-muted); margin-top:1.2mm;">
+          A farinha selecionada e a água pura são trabalhadas manualmente e recebem o descanso obrigatório de <strong>48 horas em câmara fria</strong>. Esse tempo longo quebra o glúten, desenvolve aromas profundos e resulta na reverenciada <em>"light dough"</em>: casquinha crocante, miolo alveolado e digestão tão suave que o cliente come uma pizza inteira e acorda leve.
+        </p>
+      </div>
+
+      <div class="b-box">
+        <div class="tech-badge accent">ELA // CONFEITARIA & CAFÉ ESPECIAL</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:10pt; font-weight:800; margin-bottom:1.2mm; text-transform:uppercase;">"Pare, Respire, Tome um Café"</h3>
+        <p style="font-size:7.6pt; line-height:1.36; color:var(--c-ink-muted);">
+          Enquanto a noite é de fornadas aceleradas, a manhã e a tarde são marcadas pela pausa e pelo capricho no salão. Comandada por ela, a operação do café acolhe quem passa na Moura Gonzaga sob a lousa afetiva de calçada: <em>"Pare, respire, tome um café"</em>.
+        </p>
+        <p style="font-size:7.6pt; line-height:1.36; color:var(--c-ink-muted); margin-top:1.2mm;">
+          Grãos selecionados com notas sensoriais limpas, croissants folhados crocantes servidos quentinhos com geleia caseira de frutas vermelhas, avocado toast montado em pão rústico e fatias da prestigiada <strong>Torta Basca Dourada</strong> com centro cremoso. Uma experiência sensorial de salão para saborear no local.
+        </p>
+      </div>
+    </div>
+
+    <div class="b-box gold" style="padding: 2.2mm 3.2mm;">
+      <div class="tech-badge gold">MEMÓRIA AFETIVA DE VIZINHANÇA // CARLOS LINZMEYER</div>
+      <div style="font-family:'Space Grotesk', sans-serif; font-size:9.2pt; font-weight:800; margin-bottom:0.8mm; text-transform:uppercase;">
+        "O Primeiro Café que Tomei no Bairro"
+      </div>
+      <p style="font-size:7.5pt; line-height:1.36; color:var(--c-ink);">
+        Quando cheguei para esta temporada de desenvolvimento no Rio Tavares, o Espaço Itu foi a primeira parada onde tomei um café e o casal foi a primeira acolhida que tive na região. Esse carinho inicial cria um laço de vizinhança real. É por isso que não vejo o Espaço Itu como um contrato frio de software, mas como vizinhos de ouro que merecem ter a tecnologia mais moderna trabalhando a seu favor.
+      </p>
+    </div>
+
+    <div class="grid-2col">
+      <div class="img-frame" style="height: 48mm;">
+        <img src="../assets/foto_donos_pizza.jpg" alt="Tradição familiar paulista: mestre da massa 48h ao lado do pai com a caixa da Pizza Itu">
+      </div>
+      <div class="img-frame" style="height: 48mm;">
+        <img src="../assets/foto_croissant_insta_hd.jpg" alt="Croissant artesanal folhado com geleia de frutas e café especial">
+      </div>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 02 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 03: AUDITORIA DO GOOGLE MAPS -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // AUDITORIA DE PROVA SOCIAL</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #03</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <div class="kicker">CAPÍTULO 02 // REPUTAÇÃO DIGITAL AUDITADA</div>
+      <h1 class="page-title">TRUNFO 5.0★ NO GOOGLE MAPS</h1>
+      <div class="page-subtitle">38 Avaliações Reais e Apaixonadas Chancelam a Qualidade Inquestionável</div>
+    </div>
+
+    <div class="b-box dark">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-family:'Space Grotesk', sans-serif; font-size:30pt; font-weight:800; line-height:0.9;">5,0 ★★★★★</div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size:8.5pt; color:var(--c-gold); font-weight:700; margin-top:1.5mm;">
+            NOTA MÁXIMA ABSOLUTA &bull; 38 AVALIAÇÕES ORGÂNICAS
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="tech-badge gold">PATRIMÔNIO DIGITAL RARO</div>
+          <div style="font-size:7.5pt; color:#E0D5CE;">Zero reclamações &bull; 100% Satisfação no Rio Tavares</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-heading"><span class="sec-pill accent">02</span> O QUE O ALGORITMO E OS CLIENTES DESTACAM</h2>
+      <div class="grid-2col">
+        <div class="b-box">
+          <div class="tech-badge">TAG: LIGHT DOUGH (6X)</div>
+          <p style="font-size:7.8pt; line-height:1.38; color:var(--c-ink-muted);">
+            O próprio Google indexou a massa como <strong>"light dough" (massa leve)</strong> devido à frequência com que os clientes mencionam espontaneamente a facilidade de digestão e a ausência de estufamento.
+          </p>
+        </div>
+        <div class="b-box">
+          <div class="tech-badge">TAG: SUSHI PIZZA / SALMÃO (4X)</div>
+          <p style="font-size:7.8pt; line-height:1.38; color:var(--c-ink-muted);">
+            A ousada e elogiada <strong>Pizza de Salmão Especial</strong> (lâminas de salmão fresco, cream cheese maçaricado e tarê) surpreende e atrai um público de paladar refinado na Ilha.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-box" style="border-left: 4px solid var(--c-accent); background: #FFF;">
+      <div class="tech-badge accent">DEPOIMENTO DE DESTAQUE AUDITADO</div>
+      <blockquote style="font-size: 8.2pt; line-height: 1.42; color: var(--c-ink); font-style: italic; margin-top: 1mm;">
+        "Hoje foi dia de provar a pizza de salmão da Pizzaria Itu e ficamos surpresos: apresentação, sabor e principalmente a leveza da massa estão impecáveis. Semana passada o café da manhã também nos ganhou pelo estômago. O que faz toda diferença mesmo é o capricho, atenção e dedicação da Dona..."
+      </blockquote>
+      <div style="font-family:'JetBrains Mono', monospace; font-size:7.2pt; font-weight:700; color:var(--c-accent); margin-top:1.5mm; text-align:right;">
+        — CLÁUDIO PEREIRA &bull; LOCAL GUIDE (61 AVALIAÇÕES NO GOOGLE)
+      </div>
+    </div>
+
+    <div class="b-box accent">
+      <div class="tech-badge">A OPORTUNIDADE DE CONVERSÃO</div>
+      <p style="font-size:7.8pt; line-height:1.38; color:var(--c-ink);">
+        Essa reputação não pode ficar escondida apenas dentro do aplicativo do Google. Ela precisa ser o <strong>coração da vitrine própria do Espaço Itu</strong>: com o selo oficial de 5.0 estrelas, o mapa de Como Chegar com estacionamento fácil e o botão de pedido pré-formatado no WhatsApp.
+      </p>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 03 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 04: DIAGNÓSTICO DIGITAL & FRICÇÃO -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // DIAGNÓSTICO DIGITAL</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #04</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <div class="kicker">CAPÍTULO 03 // FRICÇÃO NO CELULAR DO CLIENTE</div>
+      <h1 class="page-title">O GARGALO DO INSTAGRAM</h1>
+      <div class="page-subtitle">Por Que Cardápios em Stories Provocam Abandono Silencioso de Pedidos</div>
+    </div>
+
+    <div class="grid-3col">
+      <div class="b-box" style="border-left: 3.5px solid var(--c-accent);">
+        <div class="tech-badge accent">PROBLEMA 01</div>
+        <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          Stories que Fogem do Dedo
+        </div>
+        <p style="font-size:7.3pt; line-height:1.35; color:var(--c-ink-muted);">
+          Para ver os cafés, toasts ou pizzas, o cliente precisa abrir os "Destaques", pausar a tela com o polegar e dar zoom para tentar ler letrinhas miúdas. A qualquer deslize, a história muda de tela.
+        </p>
+      </div>
+
+      <div class="b-box" style="border-left: 3.5px solid var(--c-accent);">
+        <div class="tech-badge accent">PROBLEMA 02</div>
+        <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          Dois Turnos Conflitantes
+        </div>
+        <p style="font-size:7.3pt; line-height:1.35; color:var(--c-ink-muted);">
+          Quem entra às 09h quer ver brunch e café rápido; quem entra às 20h quer ver pizzas artesanais de 48h. No feed estático do Instagram, fotos de pizza e xícaras de café se misturam sem filtro operacional.
+        </p>
+      </div>
+
+      <div class="b-box" style="border-left: 3.5px solid var(--c-accent);">
+        <div class="tech-badge accent">PROBLEMA 03</div>
+        <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          Insegurança de Horários
+        </div>
+        <p style="font-size:7.3pt; line-height:1.35; color:var(--c-ink-muted);">
+          O cliente do Rio Tavares frequentemente não sabe se a casa está aberta agora, se fecha às 14h ou se reabre às 18h. Sem um indicador em tempo real, o cliente desiste e compra no concorrente.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="section-heading"><span class="sec-pill">03</span> COMPARATIVO DA EXPERIÊNCIA DO CLIENTE (UX)</h2>
+      <table class="b-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">ETAPA DO PEDIDO</th>
+            <th style="width: 37%;">FLUXO ATUAL (INSTAGRAM / STORIES)</th>
+            <th style="width: 38%;">FLUXO VITRINE SOBERANA WORKAROUND</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Acesso Inicial</strong></td>
+            <td>Abre Instagram, clica na bio, abre link genérico ou direct</td>
+            <td style="font-weight:700;">1 Toque no link ou QR Code: carrega em 0.4s</td>
+          </tr>
+          <tr>
+            <td><strong>2. Escolha de Turno</strong></td>
+            <td>Precisa caçar bolinhas de destaque para achar café ou pizza</td>
+            <td style="font-weight:700;">Seletor tátil inteligente: ☀️ Café & Brunch | 🌙 Pizzas 48h</td>
+          </tr>
+          <tr>
+            <td><strong>3. Visualização do Produto</strong></td>
+            <td>Texto comprimido em imagem sem botões de ação direta</td>
+            <td style="font-weight:700;">Gaveta de detalhes com ingredientes, fotos e autoridade</td>
+          </tr>
+          <tr>
+            <td><strong>4. Envio ao WhatsApp</strong></td>
+            <td>Digita à mão mensagem genérica: "Oi, ainda tem pizza hoje?"</td>
+            <td style="font-weight:700;">Pedido mastigado: "Olá! Gostaria de pedir: 1x Pizza Salmão..."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="b-box dark">
+      <div class="tech-badge gold">CONCLUSÃO DO DIAGNÓSTICO</div>
+      <p style="font-size:7.8pt; line-height:1.38; color:#FFF;">
+        O Espaço Itu tem produto de altíssima gastronomia. O gargalo não é a pizza nem o café — é o atrito que existe entre a vontade do cliente e o balcão. Eliminar essa fricção é garantia de mais vendas diárias.
+      </p>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 04 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 05: ANÁLISE FINANCEIRA & TAXAS DO IFOOD -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // ANÁLISE FINANCEIRA FORENSE</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #05</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <div class="kicker">CAPÍTULO 04 // PROTEÇÃO DE MARGEM & LUCRO LÍQUIDO</div>
+      <h1 class="page-title">A SANGRIA DOS APLICATIVOS</h1>
+      <div class="page-subtitle">Simulação Matemática das Comissões do iFood vs Soberania no Balcão</div>
+    </div>
+
+    <div class="b-box accent">
+      <div class="tech-badge accent">A ILUSÃO DO MARKETPLACE</div>
+      <p style="font-size: 8.0pt; line-height: 1.40; color: var(--c-ink);">
+        Muitos comerciantes acreditam que o iFood traz "vendas extras", mas a realidade matemática é dura: quando o cliente do próprio bairro pede pelo app, a plataforma retém entre <strong>12% e 27% sobre todo o faturamento</strong>, além de cobrar mensalidades fixas pelo plano de entrega.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="section-heading"><span class="sec-pill">04</span> SIMULAÇÃO DE PERDA MENSAL (10 PEDIDOS / DIA A R$ 70,00)</h2>
+      <table class="b-table">
+        <thead>
+          <tr>
+            <th>CANAL DE VENDA</th>
+            <th>COMISSÃO COBRADA</th>
+            <th>RETENÇÃO MENSAL (26 DIAS)</th>
+            <th>PERDA ANUAL EM TAXAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>iFood Básico (Casa Entrega)</strong></td>
+            <td>12% a 14% sobre cada venda</td>
+            <td style="color:var(--c-accent); font-weight:700;">- R$ 2.184,00 / mês</td>
+            <td style="color:var(--c-accent); font-weight:700;">- R$ 26.208,00 / ano</td>
+          </tr>
+          <tr>
+            <td><strong>iFood Entrega Completa</strong></td>
+            <td>23% a 27% sobre cada venda</td>
+            <td style="color:var(--c-accent); font-weight:700;">- R$ 4.914,00 / mês</td>
+            <td style="color:var(--c-accent); font-weight:700;">- R$ 58.968,00 / ano</td>
+          </tr>
+          <tr>
+            <td><strong>Plataformas de Cardápio SAAS</strong></td>
+            <td>Mensalidade de R$ 150 a R$ 290</td>
+            <td style="color:var(--c-accent); font-weight:700;">- R$ 250,00 / mês</td>
+            <td style="color:var(--c-accent); font-weight:700;">- R$ 3.000,00 / ano</td>
+          </tr>
+          <tr style="background: var(--c-gold-bg);">
+            <td><strong>VITRINE PRÓPRIA WORKAROUND</strong></td>
+            <td style="color:var(--c-primary); font-weight:800;">ZERO (0%)</td>
+            <td style="color:var(--c-primary); font-weight:800;">R$ 0,00 MENSAL</td>
+            <td style="color:var(--c-primary); font-weight:800;">LUCRO 100% RETIDO NA CASA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2col">
+      <div class="b-box dark">
+        <div class="tech-badge gold">O PONTO DE EQUILÍBRIO (ROI)</div>
+        <div style="font-family:'Space Grotesk', sans-serif; font-size:18pt; font-weight:800; margin-bottom:1mm;">
+          APENAS 2 PIZZAS
+        </div>
+        <p style="font-size:7.5pt; line-height:1.35; color:#FFF;">
+          Com o valor de tabela do projeto em <strong>R$ 183,00 (ou R$ 91,50 em dinheiro + permuta)</strong>, bastam <strong>2 pizzas de salmão vendidas diretamente no WhatsApp</strong> para que o investimento total da vitrine esteja 100% pago. Todo pedido subsequente é lucro líquido eterno.
+        </p>
+      </div>
+
+      <div class="b-box">
+        <div class="tech-badge">CONTROLE DA BASE DE CLIENTES</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          O Telefone é Seu, Não do App
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:var(--c-ink-muted);">
+          No aplicativo, você não tem o telefone nem o contato direto do cliente. Na vitrine própria WorkAround, cada clique cai direto no WhatsApp oficial <strong>(48) 98860-5923</strong>, construindo uma lista VIP de clientes fidelizados no Rio Tavares.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 05 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 06: A SOLUÇÃO DIGITAL AO VIVO -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // A SOLUÇÃO DIGITAL</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #06</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <div class="kicker">CAPÍTULO 05 // ENGENHARIA DE PRODUTO</div>
+      <h1 class="page-title">A VITRINE PRÓPRIA</h1>
+      <div class="page-subtitle">Tecnologia Tátil Mobile-First Projetada para o Balcão do Rio Tavares</div>
+    </div>
+
+    <div class="grid-2col">
+      <div class="b-box">
+        <div class="tech-badge">RECURSO 01 // SELETOR DE TURNOS</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          ☀️ Café & Brunch vs 🌙 Pizzas 48h
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:var(--c-ink-muted);">
+          Alternância suave e instantânea. O site detecta automaticamente o horário local de Florianópolis: das 07h30 às 18h abre com o café especial e croissants; após às 18h, ativa automaticamente o forno de pizza com a massa maturada.
+        </p>
+      </div>
+
+      <div class="b-box">
+        <div class="tech-badge">RECURSO 02 // GAVETA DE DETALHES</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          Storytelling Visual de Cada Prato
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:var(--c-ink-muted);">
+          Ao tocar no prato, uma gaveta ergonômica desliza de baixo para cima exibindo fotos reais (como a tostada de frutas, a pizza de salmão e a torta basca), explicando o processo artesanal e com botão direto de pedido no WhatsApp.
+        </p>
+      </div>
+    </div>
+
+    <!-- BOX DO QR CODE DE TESTE AO VIVO -->
+    <div class="b-box" style="border: 2px solid var(--c-border-strong); padding: 3mm 4mm; display:flex; gap:4mm; align-items:center;">
+      <div style="width: 32mm; height: 32mm; background:#FFF; border:1.5px solid var(--c-border-strong); padding:1mm; flex-shrink:0;">
+        <img src="../assets/qr_prototipo_site.png" alt="QR Code Protótipo Espaço Itu" style="width:100%; height:100%; object-fit:contain; display:block;">
+      </div>
+      <div>
+        <div class="tech-badge accent">PORTAL AO VIVO // APONTE A CÂMERA DO CELULAR</div>
+        <div style="font-family:'Space Grotesk', sans-serif; font-size:11pt; font-weight:800; text-transform:uppercase; margin-bottom:1mm;">
+          Teste o Protótipo Oficial em Tempo Real
+        </div>
+        <p style="font-size:7.6pt; line-height:1.35; color:var(--c-ink-muted);">
+          A vitrine já está publicada, rodando no servidor com certificado de segurança SSL e pronta para ser colocada no ar na bio do Instagram e no perfil do Google Maps do Espaço Itu. Aponte a câmera e comprove a leveza e velocidade.
+        </p>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:7.5pt; font-weight:700; color:var(--c-accent); margin-top:1.5mm;">
+          LINK DIRETO: advocaciadigitalavancada-create.github.io/espaco-itu/
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2col">
+      <div class="b-box">
+        <div class="tech-badge">MÓDULO "COMO CHEGAR"</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          Localização na Moura Gonzaga 1895
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:var(--c-ink-muted);">
+          Vagas na frente destacadas e botão que abre diretamente o Google Maps no GPS do celular do cliente, facilitando a retirada no balcão e a visita presencial.
+        </p>
+      </div>
+
+      <div class="b-box" style="border-left: 3.5px solid var(--c-accent);">
+        <div class="tech-badge accent">🤖 OTIMIZADO PARA BUSCA POR I.A.</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          ChatGPT, Gemini & Perplexity
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:var(--c-ink-muted);">
+          Código estruturado com o padrão oficial <em>llms.txt</em>. Quando turistas ou moradores perguntam à IA no celular sobre a melhor pizza 48h ou café no Rio Tavares, a IA recomenda o Espaço Itu.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 06 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 07: ESCALABILIDADE OPERACIONAL & BACKEND 48H -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // ESCALABILIDADE OPERACIONAL</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #07</div>
+  </div>
+  <div class="page-main">
+    <div>
+      <div class="kicker">CAPÍTULO 06 // AUTONOMIA SEM AMARRAS</div>
+      <h1 class="page-title">BACKEND SERVERLESS</h1>
+      <div class="page-subtitle">Upgrade de Painel Mobile via Google Sheets Ativável em 48 Horas</div>
+    </div>
+
+    <div class="b-box accent">
+      <div class="tech-badge accent">FILOSOFIA: CRESCIMENTO SOB DEMANDA</div>
+      <p style="font-size: 8.0pt; line-height: 1.40; color: var(--c-ink);">
+        O site entra no ar imediatamente com cardápio fixo e autonomia completa. Mas se no futuro vocês sentirem necessidade de alterar sabores do dia, pratos sazonais de brunch ou pausar uma fornada de pizza esgotada pelo celular, a WorkAround já preparou a <strong>arquitetura serverless de conexão com o Google Sheets</strong>.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="section-heading"><span class="sec-pill">05</span> ESTRUTURA DO PAINEL EM 4 ABAS INTELIGENTES</h2>
+      <table class="b-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">ABA DA PLANILHA</th>
+            <th style="width: 35%;">CAMPOS GERENCIADOS</th>
+            <th style="width: 40%;">COMO REFLETE NO SITE DO ESPAÇO ITU</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Config</strong></td>
+            <td>Horários, status geral, WhatsApp oficial, mensagens</td>
+            <td>Atualiza a barra superior em tempo real (Aberto / Fechado / Recesso)</td>
+          </tr>
+          <tr>
+            <td><strong>2. CafeManha</strong></td>
+            <td>Cafés, toasts, croissants, fatias de torta, preços</td>
+            <td>Permite alterar a fatia de bolo do dia ou os grãos especiais em 5 segundos</td>
+          </tr>
+          <tr>
+            <td><strong>3. PizzasNoite</strong></td>
+            <td>Pizzas de 48h, ingredientes, preços e estoque</td>
+            <td>Permite marcar "Últimas Fornadas" ou "Esgotado" diretamente no celular</td>
+          </tr>
+          <tr>
+            <td><strong>4. Avisos</strong></td>
+            <td>Comunicados especiais da semana e feriados</td>
+            <td>Exibe banner dourado discreto no topo da vitrine para os clientes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2col">
+      <div class="b-box">
+        <div class="tech-badge">SEGURANÇA POR PIN: 4895</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          PIN Local Exclusivo
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:var(--c-ink-muted);">
+          Apenas quem tem a senha de 4 dígitos (DDD 48 + número 1895) consegue publicar atualizações na planilha. Sem logins complexos, sem senhas esquecidas.
+        </p>
+      </div>
+
+      <div class="b-box dark">
+        <div class="tech-badge gold">ZERO MENSALIDADES DE SISTEMA</div>
+        <h3 style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; margin-bottom:1mm; text-transform:uppercase;">
+          Ativação por Taxa Única de R$ 150
+        </h3>
+        <p style="font-size:7.5pt; line-height:1.35; color:#FFF;">
+          Quando solicitada, a ativação do painel é realizada em 48 horas sob taxa única de R$ 150,00. Nada de cobranças mensais perpétuas de R$ 99 ou R$ 199. A ferramenta é sua.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>ESPAÇO ITU // DOSSIÊ ESTRATÉGICO COMPLETO</div>
+    <div class="page-indicator">PÁG. 07 / 08</div>
+  </div>
+</div>
+
+<!-- PÁGINA 08: PROPOSTA COMERCIAL & CONDIÇÃO ESPECIAL DE VIZINHANÇA -->
+<div class="page">
+  <div class="doc-header">
+    <div class="tagline">WORKAROUND // PROPOSTA COMERCIAL EXECUTIVA</div>
+    <div class="serial">SÉRIE ITU-8P // DOC #08</div>
+  </div>
+  <div class="page-main">
+    <div class="header-group">
+      <!-- CARIMBO DE VALIDADE 48H À CANETA -->
+      <div class="urgency-stamp" style="margin-bottom: 2mm;">
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size:7pt; font-weight:800; color:var(--c-accent); text-transform:uppercase; letter-spacing:0.08em;">
+            ⚡ CONDIÇÃO RELÂMPAGO // VALIDADE ESTRITA: 48 HORAS
+          </div>
+          <div style="font-size:7.1pt; line-height:1.25; color:var(--c-ink-muted);">
+            Preço de vizinhança <strong>R$ 183 (ou 50% em Permuta de Balcão)</strong> válido por 48 horas porque preciso trocar a tela do meu celular.
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:2.5mm; flex-shrink:0;">
+          <div style="font-family:'JetBrains Mono', monospace; font-size:6.2pt; font-weight:800; color:var(--c-primary); text-align:right; line-height:1.15;">
+            PREENCHER À CANETA<br>HORÁRIO LIMITE:
+          </div>
+          <div style="width: 36mm; height: 9mm; background: #E8E8E8; border: 1.5px solid var(--c-border-strong); border-radius: 3px;"></div>
+        </div>
+      </div>
+
+      <div class="kicker">CAPÍTULO 07 // CONDIÇÃO EXCLUSIVA DE VIZINHANÇA NO RIO TAVARES</div>
+      <h1 class="page-title">QUANTO CUSTA</h1>
+      <div class="page-subtitle">Transparência Radical, Zero Amarras Contratuais e Soberania Total da Casa</div>
+    </div>
+
+    <!-- FAIXA MONUMENTAL DE PREÇO COM PERMUTA -->
+    <div class="b-box dark" style="padding: 3mm 4.5mm;">
+      <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5mm; align-items:center;">
+        <div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size:7pt; font-weight:800; letter-spacing:0.1em; color:var(--c-gold); text-transform:uppercase;">
+            INVESTIMENTO ÚNICO // CHAVE NA MÃO
+          </div>
+          <div style="font-family:'Space Grotesk', sans-serif; font-size:30pt; font-weight:800; line-height:0.9; color:#FFF;">
+            R$ 183<span style="font-size:16pt; vertical-align:super;">,00</span>
+          </div>
+          <div style="font-family:'JetBrains Mono', monospace; font-size:6.8pt; letter-spacing:0.06em; text-transform:uppercase; color:var(--c-gold); margin-top:1.2mm;">
+            PAGAMENTO ÚNICO NO PIX &bull; ENTREGA EM 24 HORAS
+          </div>
+        </div>
+        <div>
+          <div style="margin-bottom:1.5mm;">
+            <span class="tech-badge gold" style="font-size:6.5pt;">50% EM PERMUTA</span>
+            <span class="tech-badge" style="background:rgba(255,255,255,0.15); font-size:6.5pt;">SEM MENSALIDADES</span>
+          </div>
+          <p style="font-size:7.3pt; line-height:1.32; color:#FFF;">
+            Vocês foram o <strong>primeiro café que tomei no bairro e as primeiras pessoas a me receberem no Rio Tavares</strong>! Por essa amizade, ofereço a condição de <strong>50% no PIX (R$ 91,50) + 50% em Permuta Gastronômica (R$ 91,50 em pizzas 48h e cafés da casa)</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AS 4 GARANTIAS FUNDAMENTAIS -->
+    <div>
+      <h2 class="section-heading"><span class="sec-pill">06</span> AS 4 GARANTIAS DE SOBERANIA DO COMERCIANTE</h2>
+      <div class="grid-2col">
+        <div class="b-box">
+          <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; color:var(--c-primary); margin-bottom:0.8mm; text-transform:uppercase;">
+            1. Zero Mensalidades Perpétuas
+          </div>
+          <p style="font-size:7.2pt; line-height:1.32; color:var(--c-ink-muted);">
+            Diferente de sistemas que cobram R$ 150 a R$ 290 todo mês para manter o cardápio no ar, aqui a hospedagem vitalícia é permanente e sem custo: R$ 0,00.
+          </p>
+        </div>
+        <div class="b-box">
+          <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; color:var(--c-primary); margin-bottom:0.8mm; text-transform:uppercase;">
+            2. Lucro 100% Retido na Casa
+          </div>
+          <p style="font-size:7.2pt; line-height:1.32; color:var(--c-ink-muted);">
+            Aplicativos de entrega chegam a morder até 27% sobre cada pedido. Na sua vitrine própria, todo o valor pago no balcão ou no PIX fica integralmente com você.
+          </p>
+        </div>
+        <div class="b-box">
+          <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; color:var(--c-primary); margin-bottom:0.8mm; text-transform:uppercase;">
+            3. Ativação em 24h & Ajustes Grátis
+          </div>
+          <p style="font-size:7.2pt; line-height:1.32; color:var(--c-ink-muted);">
+            A base já foi testada e aprovada. Fechando o acordo, o site entra no ar na bio e no Maps em 24h, com suporte dedicado para ajustes finos sem custo na primeira semana.
+          </p>
+        </div>
+        <div class="b-box">
+          <div style="font-family:'Space Grotesk', sans-serif; font-size:8.8pt; font-weight:800; color:var(--c-primary); margin-bottom:0.8mm; text-transform:uppercase;">
+            4. Expansão Sob Demanda
+          </div>
+          <p style="font-size:7.2pt; line-height:1.32; color:var(--c-ink-muted);">
+            Se no futuro quiserem novas seções, fotos profissionais ou ativação do Painel Mobile em 48h, estou disponível como desenvolvedor de balcão sem planos contratuais.
+          </p>
+        </div>
+      </div>
+    <!-- ESCALABILIDADE OPERACIONAL (UPGRADE EM 48H) -->
+    <div class="b-box accent" style="padding: 1.8mm 3mm; margin-top: 1mm;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6mm;">
+        <div class="tech-badge accent" style="margin-bottom:0; font-size:6.8pt;">FLEXIBILIDADE OPERACIONAL // UPGRADE DE PAINEL EM 48 HORAS</div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:7pt; font-weight:800; color:var(--c-accent);">
+          TAXA ÚNICA: R$ 150,00 • ZERO MENSALIDADES
+        </div>
+      </div>
+      <div style="font-family:'Space Grotesk', sans-serif; font-size:8.5pt; font-weight:800; color:var(--c-primary); margin-bottom:0.4mm; text-transform:uppercase;">
+        O Site já Nasce Pronto para Conexão com Google Sheets Móvel
+      </div>
+      <p style="font-size:7pt; line-height:1.24; color:var(--c-ink); margin-bottom:0.8mm;">
+        O site entra no ar imediatamente com autonomia total e cardápio fixo. Se no futuro vocês sentirem necessidade de alterar sabores do dia, pratos especiais de brunch ou avisar que a fornada de pizza esgotou diretamente pelo celular via planilha do Google Sheets, a WorkAround ativa o <strong>Painel Mobile Próprio em até 48 horas</strong>, por taxa única de <strong>R$ 150,00</strong> sob demanda e zero mensalidades.
+      </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5mm; font-size:6.5pt; line-height:1.20; color:var(--c-ink-muted); border-top:1px solid rgba(184,74,40,0.2); padding-top:0.6mm;">
+        <div>&bull; <strong>Sem desperdício hoje:</strong> Pague apenas pelo que precisa agora (R$ 183 ou 50% permuta).</div>
+        <div>&bull; <strong>Arquitetura pré-pronta:</strong> Não precisa jogar fora nem reconstruir o site no futuro.</div>
+        <div>&bull; <strong>Atualização no celular:</strong> Mude preços e itens direto de uma planilha no smartphone.</div>
+        <div>&bull; <strong>100% de soberania:</strong> Fim definitivo das mensalidades perpétuas de software.</div>
+      </div>
+    </div>
+
+    <!-- PORTAL PIX DE FECHAMENTO -->
+    <div class="b-box" style="padding: 1.8mm 3mm; display:flex; gap:3.5mm; align-items:center;">
+      <div style="width: 28mm; height: 28mm; background:#FFF; border:1.5px solid var(--c-border-strong); padding:1mm; flex-shrink:0;">
+        <img src="../assets/qr_pix_carlos.png" alt="QR Code PIX Carlos Linzmeyer" style="width:100%; height:100%; object-fit:contain; display:block;">
+      </div>
+      <div>
+        <div class="tech-badge accent">PORTAL DE FECHAMENTO // PIX IMEDIATO</div>
+        <div style="font-family:'Space Grotesk', sans-serif; font-size:9.5pt; font-weight:800; text-transform:uppercase; margin-bottom:0.6mm;">
+          Ativação Imediata & Início dos Trabalhos
+        </div>
+        <div style="padding: 1.2mm 2.2mm; background: var(--c-accent-soft); border-left: 3px solid var(--c-primary); font-size: 7.2pt; line-height: 1.35;">
+          <strong>VALOR:</strong> R$ 183,00 (ou R$ 91,50 no PIX + 50% em Permuta de Balcão)<br>
+          <strong>CHAVE PIX (CELULAR):</strong> (47) 98835-8855 &bull; <strong>TITULAR:</strong> Carlos Linzmeyer (WorkAround TI)
+        </div>
+      </div>
+    </div>
+
+    <!-- MANIFESTO WORKAROUND -->
+    <div class="b-box" style="padding: 1.8mm 3mm; border-left: 4px solid var(--c-accent); background: rgba(44, 27, 17, 0.04);">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:6.8pt; font-weight:800; color:var(--c-primary); text-transform:uppercase; letter-spacing:0.06em;">
+            DESENVOLVIMENTO ARTESANAL // CARLOS LINZMEYER NO RIO TAVARES
+          </span>
+          <div style="font-size:7.1pt; color:var(--c-ink-muted); margin-top:0.4mm; line-height:1.24;">
+            Sou desenvolvedor nômade vivendo esta temporada no Rio Tavares. Crio ferramentas digitais sob medida com o mesmo respeito à disciplina e ao tempo que a fermentação de 48 horas exige.
+          </div>
+        </div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:7.5pt; font-weight:800; color:var(--c-primary); white-space:nowrap; margin-left:3mm;">
+          WA: (47) 98835-8855
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="doc-footer">
+    <div>DOC.REF // ITU-8P-V1 &bull; ESPAÇO ITU &bull; WORKAROUND TI</div>
+    <div class="page-indicator">PÁG. 08 / 08</div>
+  </div>
+</div>
+
+</body>
+</html>
