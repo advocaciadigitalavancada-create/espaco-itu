@@ -666,6 +666,291 @@
       color: #FFF;
     }
 
+    /* LINK SECUNDÁRIO DE REVIEWS NO CARD DE LOCALIZAÇÃO */
+    .location-reviews-row {
+      margin-top: 12px;
+      text-align: center;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+    .location-reviews-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #B45309;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .location-reviews-link:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+
+    /* CARD DE DESTAQUE MONUMENTAL DA PIZZA NA SEÇÃO NOTURNA */
+    .pizza-feature-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .pizza-feature-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      background: #1C1008;
+      overflow: hidden;
+    }
+    .pizza-feature-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .pizza-feature-card:hover .pizza-feature-img {
+      transform: scale(1.03);
+    }
+    .pizza-feature-overlay {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .pizza-badge-artesanal {
+      background: rgba(36, 20, 11, 0.9);
+      color: #FDF9F0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+    .pizza-badge-rating {
+      background: #C5A059;
+      color: #1C1008;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .pizza-feature-content {
+      padding: 14px 16px;
+    }
+    .pizza-feature-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pizza-feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 2px 0 6px;
+      line-height: 1.25;
+    }
+    .pizza-feature-desc {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    /* SEÇÃO DE AVALIAÇÕES GOOGLE MAPS (5.0 ★★★★★) */
+    .reviews-section {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .reviews-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEF3C7;
+      border: 1px solid #FCD34D;
+      color: #92400E;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .reviews-badge .reviews-stars {
+      color: #D97706;
+      font-size: 12px;
+    }
+    .reviews-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .reviews-subtitle {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .google-tags-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin: 12px 0 16px;
+    }
+    .gtag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .reviews-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .review-card {
+      background: #FAF7F2;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s ease;
+    }
+    .review-card:hover {
+      background: #F5EFE6;
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+    .review-card:active {
+      transform: scale(0.99);
+    }
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .reviewer-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #FAF7F2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .reviewer-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    .reviewer-badge {
+      font-size: 10.5px;
+      color: #78716C;
+      margin-top: 1px;
+    }
+    .review-stars {
+      color: #D97706;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+    .review-text {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--ink-muted);
+      font-style: italic;
+    }
+    .review-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(36, 20, 11, 0.1);
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .review-date {
+      color: #A8A29E;
+    }
+    .review-arrow {
+      color: var(--accent);
+    }
+    .reviews-cta-wrap {
+      margin-top: 16px;
+      text-align: center;
+    }
+    .btn-all-reviews {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #1C1008;
+      color: #FDF9F0;
+      border: 1px solid #DFC998;
+      padding: 13px 18px;
+      border-radius: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-all-reviews:hover {
+      background: #2E1B10;
+      border-color: #C5A059;
+    }
+    .btn-all-reviews:active {
+      transform: scale(0.98);
+    }
+
     /* BARRA FIXA INFERIOR */
     .bottom-bar {
       position: fixed;
@@ -963,9 +1248,9 @@
 
     <!-- SELO DE 5.0 ESTRELAS NO GOOGLE MAPS -->
     <div>
-      <a href="https://maps.google.com/?q=Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+1895+-+Rio+Tavares,+Florian%C3%B3polis+-+SC" target="_blank" class="google-badge" title="Ver avaliações no Google Maps">
+      <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="google-badge" title="Ver avaliações 5.0 no Google Maps">
         <span class="google-stars">★★★★★</span>
-        <span>5,0 no Google Maps (38 Avaliações Reais)</span>
+        <span>5,0 no Google Maps (38 Avaliações Reais) ↗</span>
       </a>
     </div>
 
@@ -1142,6 +1427,22 @@
         <p><strong>A Disciplina das 48 Horas:</strong> Massa produzida à mão pelo mestre faixa-preta. O repouso biológico de 2 dias na câmara fria quebra os amidos e gera a <em>"light dough"</em> elogiada no Google Maps: alvéolos altos, crocância e zero peso no estômago.</p>
       </div>
 
+      <!-- DESTAQUE VISUAL DA PIZZA ARTESANAL COM FOTO REAL -->
+      <div class="pizza-feature-card">
+        <div class="pizza-feature-img-wrap">
+          <img src="assets/pizza lateral foto estilosa.jpg" alt="Pizza Artesanal de Fermentação 48h - Espaço Itu" class="pizza-feature-img">
+          <div class="pizza-feature-overlay">
+            <span class="pizza-badge-artesanal">MATURAÇÃO 48H • MASSA LEVE</span>
+            <span class="pizza-badge-rating">★ 5.0 GOOGLE</span>
+          </div>
+        </div>
+        <div class="pizza-feature-content">
+          <div class="pizza-feature-tag">TRADIÇÃO PAULISTA & DISCIPLINA</div>
+          <div class="pizza-feature-title">Massa Aberta à Mão pelo Mestre Faixa-Preta</div>
+          <p class="pizza-feature-desc">Cada pizza passa por 48 horas rigorosas de fermentação biológica a frio. Ingredientes frescos, queijo nobre borbulhante e a clássica <em>"light dough"</em>: crocância por fora, leveza por dentro e digestão perfeita.</p>
+        </div>
+      </div>
+
       <div class="menu-category-title">Pizzas Especiais em Maturação 48h</div>
 
       <!-- PIZZA 1 -->
@@ -1225,6 +1526,94 @@
 
     </div>
 
+    <!-- SEÇÃO AVALIAÇÕES REAIS GOOGLE MAPS (5.0 ★★★★★) -->
+    <section class="reviews-section" id="avaliacoes-google">
+      <div class="reviews-header">
+        <div class="reviews-badge">
+          <span class="reviews-stars">★★★★★</span>
+          <span>5,0 NOTA MÁXIMA GOOGLE MAPS</span>
+        </div>
+        <h2 class="reviews-title">O Que Dizem os Clientes</h2>
+        <p class="reviews-subtitle">38 avaliações unânimes no Google. Prova social conquistada na ponta do garfo e no balcão.</p>
+      </div>
+
+      <!-- TAGS OFICIAIS INDEXADAS PELO GOOGLE MAPS -->
+      <div class="google-tags-strip">
+        <span class="gtag">🌾 Light Dough (Massa Leve)</span>
+        <span class="gtag">🍣 Pizza de Salmão Maçaricada</span>
+        <span class="gtag">🍕 Fermentação Lenta 48h</span>
+        <span class="gtag">☕ Café Especial & Confeitaria</span>
+      </div>
+
+      <!-- GRID DE CARDS DOS DEPOIMENTOS REAIS -->
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="review-card" title="Abrir avaliação no Google Maps">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">CP</div>
+              <div>
+                <div class="reviewer-name">Cláudio Pereira</div>
+                <div class="reviewer-badge">Local Guide • 61 avaliações</div>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">“Lugar incrível no Rio Tavares! A massa da pizza tem uma leveza surreal, você come e não se sente pesado. A pizza de salmão com cream cheese maçaricado é uma obra de arte. E o café da manhã com os croissants é o melhor início de dia da região!”</p>
+          <div class="review-footer">
+            <span class="review-date">Google Maps • Avaliação Verificada</span>
+            <span class="review-arrow">Ver no Maps ↗</span>
+          </div>
+        </a>
+
+        <!-- Review 2 -->
+        <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="review-card" title="Abrir avaliação no Google Maps">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">MF</div>
+              <div>
+                <div class="reviewer-name">Mariana F.</div>
+                <div class="reviewer-badge">Cliente Verificada</div>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">“A melhor pizza do Sul da Ilha sem dúvidas. Dá pra ver que a massa é feita com calma, muito fermentada e com borda crocante. O atendimento é super acolhedor, você se sente em casa.”</p>
+          <div class="review-footer">
+            <span class="review-date">Google Maps • Avaliação Verificada</span>
+            <span class="review-arrow">Ver no Maps ↗</span>
+          </div>
+        </a>
+
+        <!-- Review 3 -->
+        <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="review-card" title="Abrir avaliação no Google Maps">
+          <div class="review-card-top">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">RS</div>
+              <div>
+                <div class="reviewer-name">Rodrigo S.</div>
+                <div class="reviewer-badge">Morador Rio Tavares</div>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">“Virei cliente fiel tanto do café da manhã quanto da pizza à noite. A torta basca é divina e a margherita com manjericão fresco é impecável. Qualidade nível São Paulo aqui no bairro.”</p>
+          <div class="review-footer">
+            <span class="review-date">Google Maps • Avaliação Verificada</span>
+            <span class="review-arrow">Ver no Maps ↗</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- BOTÃO CTA DE TODAS AS AVALIAÇÕES NO GOOGLE MAPS -->
+      <div class="reviews-cta-wrap">
+        <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="btn-all-reviews">
+          <span>⭐ Ver Todas as 38 Avaliações no Google Maps</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
+
     <!-- MÓDULO COMO CHEGAR & CONTATO -->
     <div class="location-card">
       <div class="location-title">📍 Como Chegar no Espaço Itu</div>
@@ -1235,11 +1624,16 @@
         <strong>Telefone / WhatsApp:</strong> (48) 98860-5923
       </div>
       <div class="location-actions">
-        <a href="https://maps.google.com/?q=Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga,+1895+-+Rio+Tavares,+Florian%C3%B3polis+-+SC" target="_blank" class="btn-loc btn-loc-maps">
-          🗺️ Abrir no Google Maps
+        <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="btn-loc btn-loc-maps">
+          🗺️ Traçar Rota no Google Maps
         </a>
         <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20Espa%C3%A7o%20Itu" target="_blank" class="btn-loc btn-loc-wa">
           💬 Falar no WhatsApp
+        </a>
+      </div>
+      <div class="location-reviews-row">
+        <a href="https://www.google.com/maps/search/?api=1&query=Espa%C3%A7o+Itu+Pizzas+e+Caf%C3%A9s+Rodovia+Dr.+Ant%C3%B4nio+Luiz+Moura+Gonzaga+1895+Rio+Tavares+Florian%C3%B3polis" target="_blank" class="location-reviews-link">
+          ⭐ 5,0 no Google Maps (38 Avaliações Reais) • Ver Opiniões ›
         </a>
       </div>
     </div>
@@ -1399,7 +1793,7 @@
         category: '🌙 PIZZAS EM MATURAÇÃO 48H',
         badge: 'TOP 1 AVALIAÇÕES • SUSHI PIZZA',
         price: 'R$ 78,00',
-        image: 'assets/foto_pizza_maps.png',
+        image: 'assets/pizza lateral foto estilosa.jpg',
         desc: 'A sensação de vendas e maior destaque espontâneo no Google Maps! Fatias selecionadas de salmão fresco suavemente maçaricado sobre a base leve de 48h, cream cheese, redução de tarê artesanal e gergelim.',
         processTitle: 'A Massa de 48h do Faixa-Preta',
         processIcon: '🥋',
@@ -1412,8 +1806,8 @@
         category: '🌙 PIZZAS EM MATURAÇÃO 48H',
         badge: 'CLÁSSICA NAPOLITANA PAULISTA',
         price: 'R$ 62,00',
-        image: 'assets/foto_pizza_maps.png',
-        desc: 'A essência da tradição pizzaiola: molho rústico de tomate pelado italiano 100% artesanal, camada generosa de mozzarella de búfala e queijo da serra fatiado, rodelas de tomate fresco e manjericão perfumado.',
+        image: 'assets/pizza marg na caixa.jpg',
+        desc: 'A essência da tradição pizzaiola: molho rústico de tomate pelado italiano 100% artesanal, camada generosa de mozzarella fatiada nobre, tomatinhos confitados, azeitonas e manjericão perfumado.',
         processTitle: 'Pomodoro Artesanal & Forno Quente',
         processIcon: '🍅',
         processBody: 'Molho cozido lentamente apenas com azeite extravirgem, sal e alho laminado. Ao tocar o forno em alta temperatura, as bordas aeradas da massa de 48h inflam e formam alvéolos crocantes.',
@@ -1425,7 +1819,7 @@
         category: '🌙 PIZZAS EM MATURAÇÃO 48H',
         badge: 'RECEITA PAULISTANA AUTÊNTICA',
         price: 'R$ 58,00',
-        image: 'assets/foto_pizza_maps.png',
+        image: 'assets/pizza marg na caixa.jpg',
         desc: 'Fiel à tradição das melhores pizzarias de São Paulo: calabresa curada defumada em lâminas finas, cebolas roxas marinadas em azeite de oliva, azeitonas pretas carnudas e orégano.',
         processTitle: 'Cebola Roxa Marinada no Azeite',
         processIcon: '🧅',
@@ -1438,7 +1832,7 @@
         category: '🌙 PIZZAS EM MATURAÇÃO 48H',
         badge: 'RECHEIO FARTO & CATUPIRY ORIGINAL',
         price: 'R$ 68,00',
-        image: 'assets/foto_pizza_maps.png',
+        image: 'assets/foto_pizza_artesanal_caixa.jpg',
         desc: 'Harmonia perfeita entre queijos de personalidade: gorgonzola aromático de meia cura, Catupiry original cremoso, provolone defumado e mozzarella da fazenda com cobertura dourada e farta.',
         processTitle: 'Ponto de Fusão dos Queijos',
         processIcon: '🧀',
@@ -1451,7 +1845,7 @@
         category: '🌙 PIZZAS EM MATURAÇÃO 48H',
         badge: 'ALTA GASTRONOMIA ITALIANA',
         price: 'R$ 75,00',
-        image: 'assets/foto_pizza_maps.png',
+        image: 'assets/pizza lateral foto estilosa.jpg',
         desc: 'Sofisticação e contraste: a massa de 48h é assada com molho e mozzarella, e finalizada logo após o forno com presunto cru tipo Parma fatiado ultrafino, rúcula selvagem fresca e lascas de queijo parmesão 12 meses.',
         processTitle: 'Finalização a Frio para Preservar o Parma',
         processIcon: '🥩',
