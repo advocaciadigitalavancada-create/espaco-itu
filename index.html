@@ -609,6 +609,29 @@
       background: var(--wa-dark);
     }
 
+    /* THUMBNAIL FOTOGRÁFICA DO ITEM NO CARDÁPIO */
+    .item-thumb-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: 11px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      box-shadow: 0 2px 6px rgba(36, 20, 11, 0.08);
+      position: relative;
+    }
+    .item-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .item-card:hover .item-thumb-img {
+      transform: scale(1.05);
+    }
+
     /* MÓDULO COMO CHEGAR */
     .location-card {
       background: #FFF;
@@ -1320,7 +1343,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Caf%C3%A9%20Coado%20Especial%20(R$%2012,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/foto_cafe_filtrado.jpg" alt="Café Coado Filtrado Especial" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
       <!-- ITEM 2 -->
@@ -1335,7 +1360,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Cappuccino%20Italiano%20(R$%2014,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/foto_cafe_filtrado.jpg" alt="Espresso Duplo / Cappuccino Italiano" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
       <!-- ITEM 3 -->
@@ -1350,7 +1377,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20um%20Smoothie%20Natural%20(R$%2016,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/foto_tostada_frutas.jpg" alt="Smoothies da Casa & Sucos Naturais" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
       <div class="menu-category-title">Brunch & Confeitaria Afetiva</div>
@@ -1368,7 +1397,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Croissant%20com%20Geleia%20(R$%2018,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/foto_croissant_insta_hd.jpg" alt="Croissant com Geleia de Frutas Vermelhas" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
       <!-- ITEM 5 -->
@@ -1383,7 +1414,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Avocado%20Toast%20(R$%2028,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/foto_tostada_insta_hd.jpg" alt="Avocado Toast no Pão Artesanal" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
       <!-- ITEM 6 -->
@@ -1399,7 +1432,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20fatia%20da%20Torta%20Basca%20(R$%2018,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/raw_torta_basca.png" alt="Torta Basca Dourada Queimadinha" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
       <!-- ITEM 7 -->
@@ -1414,7 +1449,9 @@
             <span class="item-tap-hint">Ver detalhes ›</span>
           </div>
         </div>
-        <a href="https://wa.me/5548988605923?text=Ol%C3%A1!%20Gostaria%20de%20uma%20Queijadinha%20Paulista%20(R$%2010,00)" class="btn-order-item" target="_blank" onclick="event.stopPropagation()">Pedir</a>
+        <div class="item-thumb-wrap">
+          <img src="assets/pratos_cafe_reel.jpg" alt="Queijadinha Tradicional Paulista" class="item-thumb-img" loading="lazy">
+        </div>
       </div>
 
     </div>
@@ -1727,7 +1764,7 @@
         category: '☀️ BEBIDAS REFRESCANTES',
         badge: '100% FRUTA NATURAL',
         price: 'R$ 16,00',
-        image: 'assets/foto_fachada_maps.png',
+        image: 'assets/foto_tostada_frutas.jpg',
         desc: 'Bebidas refrescantes preparadas exclusivamente com frutas in natura selecionadas. Sem polpas artificiais, sem conservantes e com frescor revigorante.',
         processTitle: 'Preparo Imediato no Balcão',
         processIcon: '🍓',
@@ -1779,7 +1816,7 @@
         category: '☀️ CONFEITARIA AFETIVA',
         badge: 'TRADIÇÃO ARTESANAL DE SP',
         price: 'R$ 10,00',
-        image: 'assets/logo_espaco_itu.jpg',
+        image: 'assets/pratos_cafe_reel.jpg',
         desc: 'Receita histórica paulista trazida às raízes do Espaço Itu. Muito coco ralado úmido, leite condensado e queijo de cura artesanal, resultando em casquinha crocante e miolo que desmancha.',
         processTitle: 'Ponto Exato de Forno',
         processIcon: '🥥',
